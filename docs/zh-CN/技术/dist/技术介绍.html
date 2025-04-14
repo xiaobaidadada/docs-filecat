@@ -1,0 +1,31 @@
+<h1>项目架构</h1>
+<p>基于<strong>node.js</strong> ，使用TypeScript，http 功能使用 <strong>routing-controllers</strong> 与 <strong>express</strong>，长连接是websocket，前端采用<strong>react</strong>框架，样式采用<a href="https://github.com/filebrowser/filebrowser">filebrowser</a>的，前端样式基本是复制的filebrowser的。</p>
+<p>因此只需要掌握<strong>JavaScript</strong>,<strong>使用TypeScript</strong>,<strong>Html</strong>，<strong>Css</strong>,<strong>React.js</strong>即可。学习这些技术推荐<a href="https://www.runoob.com/">菜鸟教程</a>入门，边开发边学习是最好的方式，没有必要把知识全部学完。</p>
+<h1>开发步骤</h1>
+<ol>
+<li><code>git clone https://github.com/xiaobaidadada/filecat.git</code> 克隆项目</li>
+<li>运行 <code>npm run dev </code></li>
+<li>构建 <code>npm run build</code></li>
+<li>提交pr，对于bug类型的可以随时提交，对于功能类型的，希望可以先在qq群交流一下。</li>
+</ol>
+<h1>后端</h1>
+<ul>
+<li>http 功能使用 routing-controllers 与 express ，在加上 ts 开发起来跟java的springboot感觉差不多，都是采用函数名字上加修饰器作为路由的方式定义路由函数。</li>
+<li>对于 websocket部分，也采用修饰器实现了一个和routing-controllers同样效果的路由方式。</li>
+<li>一些功能子项目，比如node-process-watcher，都是c++实现的，install项目的时候，如果访问github网慢，就需要本地编译，需要安装一些编译环境，主页有解决办法，本项目无法在mac下运行也是因为这些子项目在mac编译也许不会通过，我没有mac用来测试。</li>
+<li>后端工作量有点小大的几个功能是，虚拟网络vpn，workflow自动化构建，虚拟终端 pty-shell ，大日志文件日志，这些功能都是本项目自己原创设计实现的，还有个rdp  原创桌面控制，是采用了其它项目的源码，
+我给直接复制过来改了一下，node.js 的rdp代理好像目前只有MeshCentral实现了可以远程访问的。</li>
+<li>二进制打包本来使用 node-pkg 这个项目停止维护了，现在改成 二进制打包，把node.exe打包进去。</li>
+<li>ws 通信采用了 proto ，也可以使用 socker.io 的 socket.io-parser，因为proto可以传输二进制，并且最开始的时候已经使用了webscoket这和socket.io 不一样，所以传输编码做了两个版本的实现，proto和socket.io的socket.io-parser。</li>
+<li>数据库使用多个json文件，连sqlite都没有使用，因为没有必要，本项目能产生数据的地方极少，json文件是足够的，对于 workflow这样大量日志的功能，本项目实现了一个目前不支持删除的文档类型的日志数据库，访问效率速度也挺快的，
+自己实现这样的数据库功能，可以减少了项目依赖，以后可以支持更多的数据个性化操作。我当时也是觉得好玩，以后也有打算继续深入一下。</li>
+<li>前后端都使用 webpack打包。</li>
+<li>登录状态不使用jwt，使用变量token缓存，可以自定义登录时长，进行全部过期等操作。</li>
+</ul>
+<h1>前端</h1>
+<ul>
+<li>采用 react 和 filebrowser项目的css，自己创建了一些复用组件，整体就这样，比较简单，组件全部采用函数式。</li>
+<li>react项目的全局状态管理使用了 recoil</li>
+<li>其它的一些前端依赖，都是为了实现某个功能。</li>
+<li>本项目没有动态loding效果，以后也不会添加类似的动画效果，我觉得这是没有必要的，不如探索一下如何提高访问速度。</li>
+</ul>

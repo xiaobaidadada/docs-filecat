@@ -1,0 +1,10 @@
+<h1><code>npm install </code> 的时候报错</h1>
+<p>有些依赖是需要到github下载依赖，国内访问github时好时坏的，不管使用cnpm还是yarn都无法解决这个问题，如果实在不行可以安装一下c++安装环境，python、vs studio、node-gyp，有问题可以查看这个<a href="https://blog.csdn.net/jjocwc/article/details/134152602">链接</a></p>
+<h1>为什么采用node.js做后端</h1>
+<ul>
+<li>采用node.js 前后端都是js语言，开发便利。</li>
+<li>因为是服务器管理工具，主要是文件读写，配置修改，命令执行，网络转发这些功能，虽然js是单线程，但这些系统io api其实都是并行执行的。
+通过await或者then，系统io成功以后会排队调用单线程中的js函数，所以对于这个项目node.js是足够的，对于需要做点计算的进程资源获取，文件日志全文搜索，这些功能也都放到了子线程，也是并发执行的，不会影响主线程。</li>
+<li>node.js 与c++交互足够方便，我当时想写个vpn玩玩，一些项目都是c++，采用node.js与c++不管是调用还是打包都很方便，其它语言比如java并不是很方便。</li>
+<li>filebrowser 后端采用的go，其实go内存消耗确实更小，但是我不太喜欢go的语法，综合上面的原因没有采用go。</li>
+</ul>

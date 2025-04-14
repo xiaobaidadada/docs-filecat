@@ -1,0 +1,83 @@
+<h1>命令参数</h1>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="1. update 升级(npm方式升级)(npm安装方式)
+2. remove 移除(从npm)(npm安装方式)
+3. version 版本
+4. help 帮助信息
+5. install 安装到systemd（只支持linux)
+6. uninstall 从systemd卸载（只支持linux)
+7  restart 重启systemd服务（只支持linux)
+8. stop 停止运行systemd服务(支持linux)
+// 以下参数都需要额外的参数输入 例如&quot;filecat --port 8080 &quot;端口参数 用于控制程序运行。
+9. port 需要端口参数 
+10. env 输入环境配置文件
+11. work_dir 工作目录，软件执行需要生成一些数据，会放到这个目录下，默认是启动软件所在的目录下的data文件夹
+12. base_folder 软件管理的文件夹默认根路径，默认是启动软件所在的目录
+13. username 登录账号 默认是admin (截止到1.0.5目前没有权限功能)
+14. password 登录密码 默认是admin
+15. reset_root_username 重新生成管理员的账号 (启动完请删除这个参数下次要再使用，下面的密码也是)
+16. reset_root_password
+17. base_url 路由前缀" >复制</button>
+        <pre><code>1. update 升级(npm方式升级)(npm安装方式)
+2. remove 移除(从npm)(npm安装方式)
+3. version 版本
+4. help 帮助信息
+5. install 安装到systemd（只支持linux)
+6. uninstall 从systemd卸载（只支持linux)
+7  restart 重启systemd服务（只支持linux)
+8. stop 停止运行systemd服务(支持linux)
+// 以下参数都需要额外的参数输入 例如&quot;filecat --port 8080 &quot;端口参数 用于控制程序运行。
+9. port 需要端口参数 
+10. env 输入环境配置文件
+11. work_dir 工作目录，软件执行需要生成一些数据，会放到这个目录下，默认是启动软件所在的目录下的data文件夹
+12. base_folder 软件管理的文件夹默认根路径，默认是启动软件所在的目录
+13. username 登录账号 默认是admin (截止到1.0.5目前没有权限功能)
+14. password 登录密码 默认是admin
+15. reset_root_username 重新生成管理员的账号 (启动完请删除这个参数下次要再使用，下面的密码也是)
+16. reset_root_password
+17. base_url 路由前缀</code></pre>
+      </div><h1>env文件</h1>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="#服务器端口
+#server port
+port=5567
+# 文件夹起始地址 文件管理的默认地址，不填的话会是执行程序的目录
+# The starting folder address, the default address for file management. If not specified, it will be the directory of the executing program.
+#base_folder=D:\ 或者 /home/user
+
+# 本地账号密码
+username=admin
+password=admin
+
+# 该程序需要一个目录来存放数据，最好是空目录
+# The program requires a directory to store data, preferably an empty directory.
+#work_dir=D:\data 或者 /home
+
+# 用于重新修改密码
+reset_root_password=
+
+#用于重新修改root账号
+reset_root_username=" >复制</button>
+        <pre><code>#服务器端口
+#server port
+port=5567
+# 文件夹起始地址 文件管理的默认地址，不填的话会是执行程序的目录
+# The starting folder address, the default address for file management. If not specified, it will be the directory of the executing program.
+#base_folder=D:\ 或者 /home/user
+
+# 本地账号密码
+username=admin
+password=admin
+
+# 该程序需要一个目录来存放数据，最好是空目录
+# The program requires a directory to store data, preferably an empty directory.
+#work_dir=D:\data 或者 /home
+
+# 用于重新修改密码
+reset_root_password=
+
+#用于重新修改root账号
+reset_root_username=</code></pre>
+      </div>

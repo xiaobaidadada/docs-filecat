@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const {rimraf} = require("rimraf");
+// const {rimraf} = require("rimraf");
 const markdownit = require('markdown-it');
 
 let md_render;
