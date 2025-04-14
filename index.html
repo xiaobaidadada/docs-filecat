@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileCat-Docs</title>
+    <!-- 引入 markdown-it 库 -->
+<!--    <script src="code/js/markdown-it.min.js"></script>-->
+    <link rel="stylesheet" href="code/css/new-github-markdown.css">
+    <link rel="stylesheet" href="code/css/docs.css">
+    <link rel="stylesheet" href="code/css/header.css">
+    <link rel="stylesheet" href="code/css/main.css">
+    <link rel="stylesheet" href="code/css/menu.css">
+    <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="code/resource/favicon-32x32.png"
+    />
+</head>
+<body>
+<header class="header">
+    <div id="menu-change-button" class="header-menu">
+        <div class="menu-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <h3>FileCat文档</h3>
+    <title></title>
+    <a href="https://github.com/xiaobaidadada/filecat" target="_blank" class="github-corner" >
+        <img src="/code/resource/github.svg" alt="GitHub" >
+    </a>
+</header>
+<!--菜单-->
+<div id="menu" class="markdown-body menu-mobile menu-mobile-hidden"></div>
+<main>
+    <!-- 渲染结果容器 -->
+    <div id="preview" class="markdown-body"></div>
+</main>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        // 保证以 / 结尾 避免出现 js css 资源项目路径访问问题
+        const {pathname} = window.location;
+        // 检查路径名是否带有文件后缀
+        const hasExtension = pathname.lastIndexOf('.') > pathname.lastIndexOf('/');
+        if (!hasExtension && !pathname.endsWith("/")) {
+            window.location.pathname += "/";
+        }
+    });
+</script>
+<script type="module" src="code/js/docs.js"></script>
+<script src="code/js/init.js"></script>
+</body>
+</html>

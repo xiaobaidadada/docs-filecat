@@ -1,0 +1,133 @@
+/* 任何位置加上这个标签都会显示在顶层
+ <header className={"header"}>
+                <Action icon={"more_vert"} />
+            </header>
+*/
+
+.header {
+    z-index: 999;
+    background-color: #fafafa;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3em;
+    width: 100%;
+    /*padding: 0;*/
+    display: flex;
+    padding: 0.5em 0.5em 0.5em 1em;
+    align-items: center;
+}
+
+
+.header-min {
+    height: 0.1rem;
+    font-size: 0.1rem;
+    opacity: 0.5;
+}
+
+.header-min:hover {
+    height: 4rem;
+    font-size: small;
+}
+
+.header > * {
+    flex: 0 0 auto;
+}
+
+.header title {
+    display: block;
+    flex: 1 1 auto;
+    /*padding: 0 1em;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.2em;
+}
+
+.header .header-menu {
+    display: none;
+}
+
+.header .overlay {
+    width: 0;
+    height: 0;
+}
+
+.header a,
+.header a:hover {
+    color: inherit;
+}
+
+.header > div:first-child > .action,
+.header img {
+    margin-right: 1em;
+}
+
+.header img {
+    height: 2.5em;
+}
+
+.header .action span {
+    display: none;
+}
+
+.header > div div {
+    vertical-align: middle;
+    /*position: relative;*/
+}
+
+.header .search-button,
+.header .menu-button {
+    display: none;
+}
+
+.header .header-menu {
+    display: none;
+}
+
+
+/*移动*/
+@media (max-width: 736px) {
+    .header {
+        overflow-x: auto !important; /*  暂时使用这种滚动方式 */
+        overflow-y: hidden;
+
+        /*-ms-overflow-style: none;  !* 对 IE 和 Edge 浏览器隐藏滚动条 *!*/
+        /*scrollbar-width: none;     !* 对 Firefox 浏览器隐藏滚动条 *!*/
+    }
+
+
+    .header .header-menu {
+        display: block;
+        padding-right: 1rem;
+    }
+}
+
+/*菜单按钮*/
+.menu-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin: .3rem;
+}
+
+.menu-icon span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+    margin: 4px 0;
+    border-radius: 2px;
+}
+
+.github-corner {
+    padding-right: 2rem;
+}
+.github-corner image {
+    height: 2rem;
+    width: 2rem;
+
+}
