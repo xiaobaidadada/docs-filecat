@@ -1,0 +1,19 @@
+<h1>Cross-Platform Terminal Experience</h1>
+<p>Regardless of whether it’s deployed on Windows or Linux, the experience is the same. The system does not use built-in terminals like Bash or PowerShell. Instead, it uses <a href="https://www.npmjs.com/package/pty-shell">pty-shell</a>, a virtual terminal specifically developed for this project.</p>
+<h1>Command Permissions</h1>
+<p>All commands have permissions. A command can only be executed if it has been granted executable permission in the <strong>Permission Settings</strong> (an asterisk &quot;*&quot; means all commands are allowed). By default, only <code>pwd</code> and <code>ls</code> commands are available. Since the <code>pty-shell</code> is developed with JS, it directly filters permissions without using regular expressions like most other projects. This permission filtering is fully trustworthy, avoiding the risk of sub-accounts running dangerous commands like <code>rm -r /</code>.</p>
+<h1>Environment Directories</h1>
+<p>Currently, environment variable settings are not provided, but environment directories (i.e., path environment variables) can be configured. You can set them in <strong>Settings - Environment</strong>.</p>
+<h1>Custom Command Filtering</h1>
+<p>You can customize command validation code in <strong>Settings - Environment</strong> to determine if a specific command and its parameters can be executed.</p>
+<h1>Supported Quick Actions</h1>
+<ul>
+<li>Supports <code>Ctrl + C</code> and <code>Ctrl + V</code> for copy and paste.</li>
+<li>Press <code>Tab</code> for command auto-completion.</li>
+</ul>
+<h1>PTY Selection</h1>
+<p>PTY refers to the medium that connects remote terminals (like xterm.js in this project) and system bash or PowerShell. Many command programs require a PTY environment to know the current virtual screen size. By default, commands in this project do not use the PTY environment but execute directly via child processes. For commands that require PTY, you can enable PTY (using node-pty). You can add multiple commands in the <strong>Settings - PTY CMD</strong> section. The latest version of npm requires a PTY environment to run.</p>
+<h1>Terminal and Child Process Closure</h1>
+<p>If the terminal is closed, all processes launched by this terminal (i.e., the parent process) will be killed, including any nested child processes.</p>
+<h1>Currently Not Supporting Piping</h1>
+<p>Piping (i.e., using <code>&amp;&amp;</code> or <code>||</code> in commands) is not supported at the moment. Only single commands are supported. This makes programs like <code>grep</code> unusable. To use piping, you can input a local terminal program, such as <code>bash</code>, and execute the command in that environment.</p>

@@ -1,0 +1,89 @@
+<h1>Command Line Arguments</h1>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="1. update – Upgrade the program (for npm installation)  
+2. remove – Uninstall the program (from npm) (for npm installation)  
+3. version – Display the current version  
+4. help – Show help information  
+5. install – Install as a systemd service (Linux only)  
+6. uninstall – Uninstall from systemd (Linux only)  
+7. restart – Restart the systemd service (Linux only)  
+8. stop – Stop the systemd service (Linux only)  
+
+// The following parameters require additional values.  
+// Example: &quot;filecat --port 8080&quot; to specify the port.
+
+9. port – Port number the server will run on  
+10. env – Path to the environment configuration file  
+11. work_dir – Working directory for generated data (default is `./data` in the startup directory)  
+12. base_folder – Root folder managed by FileCat (default is the startup directory)  
+13. username – Login username (default is `admin`) (as of version 1.0.5, permissions are not yet implemented)  
+14. password – Login password (default is `admin`)  
+15. reset_root_username – Regenerate the admin username (remove this parameter after first use; same for the password below)  
+16. reset_root_password – Regenerate the admin password  
+17. base_url – URL route prefix" >复制</button>
+        <pre><code>1. update – Upgrade the program (for npm installation)  
+2. remove – Uninstall the program (from npm) (for npm installation)  
+3. version – Display the current version  
+4. help – Show help information  
+5. install – Install as a systemd service (Linux only)  
+6. uninstall – Uninstall from systemd (Linux only)  
+7. restart – Restart the systemd service (Linux only)  
+8. stop – Stop the systemd service (Linux only)  
+
+// The following parameters require additional values.  
+// Example: &quot;filecat --port 8080&quot; to specify the port.
+
+9. port – Port number the server will run on  
+10. env – Path to the environment configuration file  
+11. work_dir – Working directory for generated data (default is `./data` in the startup directory)  
+12. base_folder – Root folder managed by FileCat (default is the startup directory)  
+13. username – Login username (default is `admin`) (as of version 1.0.5, permissions are not yet implemented)  
+14. password – Login password (default is `admin`)  
+15. reset_root_username – Regenerate the admin username (remove this parameter after first use; same for the password below)  
+16. reset_root_password – Regenerate the admin password  
+17. base_url – URL route prefix</code></pre>
+      </div><h1><code>.env</code> File Configuration</h1>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="# Server port
+port=5567
+
+# Root directory for file management. If not specified, defaults to the program's execution directory.
+# Example: base_folder=D:\ or /home/user
+#base_folder=D:\ or /home/user
+
+# Local login credentials
+username=admin
+password=admin
+
+# Directory for storing program data. It is recommended to use an empty directory.
+# Example: work_dir=D:\data or /home
+#work_dir=D:\data or /home
+
+# Use this to reset the root password
+reset_root_password=
+
+# Use this to reset the root username
+reset_root_username=" >复制</button>
+        <pre><code># Server port
+port=5567
+
+# Root directory for file management. If not specified, defaults to the program's execution directory.
+# Example: base_folder=D:\ or /home/user
+#base_folder=D:\ or /home/user
+
+# Local login credentials
+username=admin
+password=admin
+
+# Directory for storing program data. It is recommended to use an empty directory.
+# Example: work_dir=D:\data or /home
+#work_dir=D:\data or /home
+
+# Use this to reset the root password
+reset_root_password=
+
+# Use this to reset the root username
+reset_root_username=</code></pre>
+      </div>

@@ -1,0 +1,42 @@
+<h1>Project Architecture</h1>
+<p>Built on <strong>Node.js</strong>, using TypeScript. HTTP functionality is handled with <strong>routing-controllers</strong> and <strong>express</strong>. WebSocket is used for persistent connections. The frontend is built with <strong>React</strong>, and the styling is largely copied from <a href="https://github.com/filebrowser/filebrowser">filebrowser</a>.</p>
+<p>So you only need to be familiar with <strong>JavaScript</strong>, <strong>TypeScript</strong>, <strong>HTML</strong>, <strong>CSS</strong>, and <strong>React.js</strong>. For learning these technologies, <a href="https://www.runoob.com/">Runoob (Rookie Tutorial)</a> is a great resource to get started. The best way to learn is by developing while learning—there's no need to master everything beforehand.</p>
+<hr>
+<h1>Development Steps</h1>
+<ol>
+<li>Clone the project:<br>
+<code>git clone https://github.com/xiaobaidadada/filecat.git</code></li>
+<li>Run development server:<br>
+<code>npm run dev</code></li>
+<li>Build the project:<br>
+<code>npm run build</code></li>
+<li>To contribute a pull request:</li>
+</ol>
+<ul>
+<li>Bug fixes can be submitted anytime.</li>
+<li>For new features, it's recommended to discuss them in the QQ group first.</li>
+</ul>
+<hr>
+<h1>Backend</h1>
+<ul>
+<li>HTTP features are built using <code>routing-controllers</code> and <code>express</code>. Combined with TypeScript, the development experience is similar to Java’s Spring Boot. Routes are defined using decorators above function names.</li>
+<li>WebSocket routes are also implemented using a decorator-based system, achieving the same effect as <code>routing-controllers</code>.</li>
+<li>Some submodules like <code>node-process-watcher</code> are implemented in C++. When installing the project, if GitHub is slow to access, local compilation is required. This needs a build environment. Check the homepage for solutions. The project currently does not support macOS, mainly because these submodules might not compile successfully on macOS (and I don’t have a Mac to test).</li>
+<li>Some of the larger, original features developed in this project include a virtual VPN, workflow automation builder, virtual terminal (pty-shell), and large file log viewer. These are all original designs.<br>
+There's also an RDP-based remote desktop feature, which reuses code from other projects. I modified it slightly. As far as I know, only MeshCentral has implemented a Node.js-based RDP proxy for remote access.</li>
+<li>Originally, I used <code>node-pkg</code> for binary packaging, but it is no longer maintained. Now, binary packaging includes <code>node.exe</code> directly.</li>
+<li>WebSocket communication uses <code>proto</code> (protobuf). It can also support <code>socket.io-parser</code>. Since proto can transmit binary data and I started with WebSocket (not socket.io), both proto and socket.io-parser encoding versions are implemented.</li>
+<li>The database uses multiple JSON files. Even SQLite is not used, because there’s no need. The project rarely generates large amounts of data. JSON is sufficient.<br>
+For logs in workflows (which can be large), I built a custom document-style logging database that doesn’t support deletion yet but performs well.<br>
+This custom solution reduces external dependencies and allows more flexible operations in the future. I thought it was fun and plan to keep improving it.</li>
+<li>Both frontend and backend are bundled using Webpack.</li>
+<li>Login state doesn't use JWT; instead, it uses an in-memory token variable. You can customize the session timeout and invalidate all tokens when needed.</li>
+</ul>
+<hr>
+<h1>Frontend</h1>
+<ul>
+<li>Built with React and uses the CSS from the <code>filebrowser</code> project. I created several reusable components. The structure is simple, and all components are written as functional components.</li>
+<li>Global state management is done using <code>recoil</code>.</li>
+<li>Other frontend dependencies are introduced only to support specific features.</li>
+<li>This project does not include dynamic loading animations and never will. I think such animations are unnecessary—it's better to focus on improving performance.</li>
+</ul>

@@ -1,0 +1,22 @@
+<h1>Proxy Features</h1>
+<p>Most of the tools in the toolbox are proxy-related features. The original purpose of developing these features is to allow <strong>remote access</strong> to other servers or devices inside the home network (such as routers) that do not support public access or do not have a public IP. These tools can also be used for <strong>bulk management</strong> of multiple hosts inside a private network.</p>
+<h1>SSH Proxy</h1>
+<ul>
+<li>This feature allows you to enter login credentials for another Linux server. The connection will be forwarded through this server to access another Linux server.</li>
+<li>It provides an experience almost identical to local file operations, allowing for code editing, but does <strong>not</strong> support file previews.</li>
+<li>The terminal uses the default terminal of the remote server, not the local pty-shell.</li>
+<li>The file upload feature first uploads the file to the intermediate server, then forwards it to the target Linux server, and finally deletes the temporary file on the intermediate server.</li>
+</ul>
+<h1>Browser Proxy</h1>
+<p>This feature provides an <strong>HTTP proxy</strong> to directly display another website, such as accessing a home router. A unique HTTP port (randomly assigned) must be provided. If the server has limited available ports, this feature will be unavailable.</p>
+<h1>HTTP Proxy</h1>
+<ul>
+<li>This feature provides a <strong>mini postman</strong> function, supporting form file uploads. Files will be uploaded to the server first, then sent to the target, and finally, the temporary file on the server will be deleted.</li>
+<li>It also supports <strong>background file downloads</strong>. You can specify a local download directory, and the page can be opened quickly from any folder.</li>
+</ul>
+<h1>RDP Proxy (Remote Windows)</h1>
+<p>Provides remote Windows access using <strong>MeshCentral</strong> to rewrite the <code>mstsc</code> protocol.</p>
+<h1>RTSP Player</h1>
+<p>Requires <strong>FFmpeg</strong> to be installed. By entering an RTSP stream (such as a surveillance camera address), you can remotely play the stream in real time.</p>
+<h1>Wake on LAN (WOL)</h1>
+<p>Requires the <strong>MAC address</strong> of another host, and the host must have a network cable plugged in. Most computers support <strong>Wake on LAN</strong>.</p>

@@ -1,0 +1,70 @@
+<p>Currently, macOS is <strong>not officially supported</strong>, but you can run FileCat on macOS using <strong>Docker</strong>. Some features are implemented in <strong>C</strong>, making them non-cross-platform. Since I don't have a Mac to test with, it most likely won't install or run successfully on macOS natively.</p>
+<h3>1. Demo Experience</h3>
+<p>URL: <a href="http://demo.filecat.xiaobaidadada.fun:5569/">http://demo.filecat.xiaobaidadada.fun:5569/</a></p>
+<ul>
+<li>Username / Password: <code>admin</code> / <code>admin</code></li>
+</ul>
+<h3>2. Run via NPM</h3>
+<ul>
+<li>If your server already has <strong>Node.js</strong> and <strong>npm</strong> installed, you can install FileCat globally using:<br>
+<code>npm install filecat -g</code><br>
+Then run it with the <code>filecat</code> command.<br>
+Alternatively, install it locally with <code>npm install filecat</code>, then run it via:<br>
+<code>npx filecat</code></li>
+<li>If your network is slow, consider using the Taobao mirror:<br>
+<code>npm config set registry https://registry.npmmirror.com</code><br>
+Or install directly using the mirror:<br>
+<code>npm install -g filecat --registry https://registry.npmmirror.com</code></li>
+<li>Some dependencies are prebuilt and hosted on GitHub (supports Node.js versions 16, 18, 20, 22).<br>
+If GitHub is slow or inaccessible, you may need to compile locally. Check the error messages and install missing dependencies, such as:<br>
+<code>npm -g install node-addon-api</code><br>
+If GitHub access is completely unavailable, you can use the <strong>binary</strong> or <strong>Docker</strong> methods instead.<br>
+For Windows build issues, see this article:<br>
+<a href="https://blog.csdn.net/jjocwc/article/details/134152602">https://blog.csdn.net/jjocwc/article/details/134152602</a></li>
+</ul>
+<h3>3. Run via Binary</h3>
+<p>Download the <a href="https://github.com/xiaobaidadada/filecat/releases">latest release</a><br>
+Extract the archive for your platform. It includes all resources and a <code>node.exe</code>, along with a startup script.</p>
+<ul>
+<li>
+<p>Only x64 builds are provided; if you're on ARM, you need to build it yourself.</p>
+</li>
+<li>
+<p>Run the script:<br>
+<code>run.cmd --port 5567 --base_folder /home</code><br>
+(On Linux: <code>run.sh</code>)<br>
+If <code>username</code> is not set, default credentials will be <code>admin/admin</code>.</p>
+</li>
+<li>
+<p>To use a config file:<br>
+<code>run.sh --env ./env</code><br>
+On Linux, you may need to run <code>sudo chmod +x ./run.sh</code> to make it executable.</p>
+</li>
+</ul>
+<h3>4. Run as a systemd service (Linux only)</h3>
+<p>This method installs FileCat as a <strong>background service</strong> via <code>systemd</code>, which requires <strong>root privileges</strong>.<br>
+Recommended for Linux users.</p>
+<ul>
+<li>Download the latest <code>filecat-linux</code> binary</li>
+<li>Make it executable:<br>
+<code>chmod +x filecat-linux</code></li>
+<li>Install with:<br>
+<code>./filecat-linux --install linux</code><br>
+If you've installed FileCat via npm, you can also run:<br>
+<code>filecat --install linux</code></li>
+</ul>
+<h3>5. Run via Docker</h3>
+<p>Use the following command to run FileCat in Docker:</p>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="docker run -d --name filecat --restart=always --net=host -v /home:/home ghcr.io/xiaobaidadada/filecat:latest --port 5567 --base_folder /home" >复制</button>
+        <pre><code>docker run -d --name filecat --restart=always --net=host -v /home:/home ghcr.io/xiaobaidadada/filecat:latest --port 5567 --base_folder /home</code></pre>
+      </div><h3>6. Run from Git Clone</h3>
+<p>Clone the repository, then run:</p>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="npm run dev
+node build/main.js" >复制</button>
+        <pre><code>npm run dev
+node build/main.js</code></pre>
+      </div>

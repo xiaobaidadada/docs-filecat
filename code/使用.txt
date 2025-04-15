@@ -1,0 +1,4 @@
+1. 需要自定义docs目录下的文件就行，其它全部粘贴复制
+2. build目录下的build命令可以对每个文档生成一个dist目录下对应的html，不用在加载markdown依赖了
+3. docs下需要对每个语言配置一个目录，默认是 zh-CN
+4. 每个语言目录下都需要提供 home.md 和 menu.md 两个 文件，所有url的相对开始路路径都是 /docs

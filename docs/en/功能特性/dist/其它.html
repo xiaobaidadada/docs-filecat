@@ -1,0 +1,27 @@
+<h1>Virtual Network</h1>
+<ul>
+<li>
+<p>After enabling the server mode, other machines can connect as clients to this server. Each client will create a virtual IP on the computer. On Windows, the program <strong>must be run in Administrator mode</strong> to create a virtual IP.<br>
+A client can also connect to a server on the same machine by setting the server IP to <code>localhost</code>.</p>
+</li>
+<li>
+<p>P2P originally used <strong>UDP hole punching</strong>, but due to heavy restrictions by Chinese ISPs (especially China Mobile, which often blocks UDP in many regions), this feature has been <strong>removed and is no longer maintained</strong>.</p>
+</li>
+</ul>
+<h1>DDNS</h1>
+<p>Currently, only <strong>Tencent Cloud</strong> is supported.<br>
+Introducing SDKs from other providers would significantly increase the project size, so support for more providers may be added gradually in the future.</p>
+<h1>Static Resource Routing</h1>
+<p>You can configure a static file path. After setting the API (must start with <code>/api</code> by default), resource files can be accessed via HTTP—similar to using <strong>nginx</strong>.</p>
+<h1>Custom API Routes</h1>
+<p>Supports user-defined API endpoints.<br>
+This is useful for scenarios like <strong>Single Sign-On (SSO)</strong>.</p>
+<h1>Custom Login Auth</h1>
+<p>Only used during login.<br>
+Can be used to log login events or implement SSO.</p>
+<h1>Bookmarks</h1>
+<p>This is a <strong>bookmark manager</strong>, used for saving links to other websites hosted on the server.</p>
+<h1>System Performance</h1>
+<p>Displays various system resource usage stats.<br>
+You can choose whether to enable <strong>real-time monitoring</strong>.<br>
+On Linux, clicking the memory card icon in the menu allows you to view mounted disks and <strong>edit the disk mount configuration file</strong>.</p>

@@ -1,0 +1,137 @@
+<p>This is a workflow feature that uses GitHub-style workflow syntax (YAML format). You can create a file with the <code>.act</code> extension, then right-click the file to see an execution option.</p>
+<h1>Use Cases</h1>
+<ul>
+<li>Personal or internal automation build tools, similar to Jenkins</li>
+<li>With permission controls, editing and execution rights can be assigned based on user roles</li>
+</ul>
+<h1>How to Use</h1>
+<ol>
+<li>Create a <code>.act</code> file</li>
+<li>Define <code>name</code>, <code>job</code>, and other steps</li>
+<li>Right-click to execute and monitor real-time progress</li>
+<li>After execution, a history button will appear in the current menu bar</li>
+<li>In settings, you can also configure a remote trigger API, which can be used for Git hooks to trigger automatic builds</li>
+</ol>
+<h1>Syntax</h1>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="name: test  # Name ({{}} not supported)
+run-name: Build Project # Name displayed in logs
+
+# import-files: # Import multiple config files, used by `use-yml` in steps
+#     - ./ok.yml
+
+inputs: # Input parameters
+  job:
+    description: &quot;Task parameter&quot;
+    required: true # Required
+    default: build # Default value
+
+env: # Define environment variables. These can be used in `run`, `cwd`, or `run-name` using {{}}. Use single quotes to wrap variables. Use {{{ }}} for raw output (Mustache.js style).
+  version: 1
+  cmd_install: npm install
+  token: 123
+  # Some variables are automatically added during execution:
+  # filecat_user_id: 1
+  # filecat_user_name: admin
+  # filecat_user_note: Note
+
+username: admin # Username to execute the script under
+user_id: 1 # Overrides `username`; only users with specific permissions can be set here
+
+# All jobs are executed in parallel by default
+jobs:
+  build-job1:
+    if: 1==1 # Whether this job should run
+    cwd: E:\test # Execution directory (must be absolute). Default is the directory of the YAML file. Clean-up must be done manually.
+    name: Phase 1
+    repl: false # Interactive execution. If the previous step hasn't finished and has output, the next one will run. Must be managed properly to avoid indefinite hanging.
+    # need-job: build-job2 # Wait for another job to finish (must be within this file)
+    sys-env: # These will be added to the shell environment during execution
+      token: {{{token}}}
+    env:
+      temp: '{{token}}123' # Temporary variables
+    steps:
+      - use-yml: test2 # Use another YAML's `name`
+        with-env:
+          version: 18 # Pass environment variables to external YAML
+      # - run: pip.exe install setuptools
+      # - run: npm.cmd install
+      # - run: ok1
+      # - run: ls
+      - run: npm run build
+      # - run: npm publish
+
+  build-job2:
+    cwd: E:\test2
+    name: Phase 2
+    steps:
+      - if: 1==2 # Conditional execution
+        run: ls" >复制</button>
+        <pre><code>name: test  # Name ({{}} not supported)
+run-name: Build Project # Name displayed in logs
+
+# import-files: # Import multiple config files, used by `use-yml` in steps
+#     - ./ok.yml
+
+inputs: # Input parameters
+  job:
+    description: &quot;Task parameter&quot;
+    required: true # Required
+    default: build # Default value
+
+env: # Define environment variables. These can be used in `run`, `cwd`, or `run-name` using {{}}. Use single quotes to wrap variables. Use {{{ }}} for raw output (Mustache.js style).
+  version: 1
+  cmd_install: npm install
+  token: 123
+  # Some variables are automatically added during execution:
+  # filecat_user_id: 1
+  # filecat_user_name: admin
+  # filecat_user_note: Note
+
+username: admin # Username to execute the script under
+user_id: 1 # Overrides `username`; only users with specific permissions can be set here
+
+# All jobs are executed in parallel by default
+jobs:
+  build-job1:
+    if: 1==1 # Whether this job should run
+    cwd: E:\test # Execution directory (must be absolute). Default is the directory of the YAML file. Clean-up must be done manually.
+    name: Phase 1
+    repl: false # Interactive execution. If the previous step hasn't finished and has output, the next one will run. Must be managed properly to avoid indefinite hanging.
+    # need-job: build-job2 # Wait for another job to finish (must be within this file)
+    sys-env: # These will be added to the shell environment during execution
+      token: {{{token}}}
+    env:
+      temp: '{{token}}123' # Temporary variables
+    steps:
+      - use-yml: test2 # Use another YAML's `name`
+        with-env:
+          version: 18 # Pass environment variables to external YAML
+      # - run: pip.exe install setuptools
+      # - run: npm.cmd install
+      # - run: ok1
+      # - run: ls
+      - run: npm run build
+      # - run: npm publish
+
+  build-job2:
+    cwd: E:\test2
+    name: Phase 2
+    steps:
+      - if: 1==2 # Conditional execution
+        run: ls</code></pre>
+      </div><h2>Core Syntax</h2>
+<ol>
+<li>Each file must have a <code>name</code></li>
+<li><code>env</code> can be used to provide environment variables</li>
+<li><code>jobs</code> defines multiple job tasks, each of which is a set of sequential commands. All commands in a job run within a single shell environment. You can use <code>cd</code> for relative path switching. If one command fails, the entire job fails.</li>
+</ol>
+<h2>Advanced Syntax</h2>
+<ol>
+<li>Each job and command can be conditionally executed using <code>if</code></li>
+<li><code>import-files</code> allows importing other YAML files, and <code>use-yml</code> can reference them</li>
+<li><code>inputs</code> also serves as environment variables, which can be filled in from the UI when right-clicking the file; these override <code>env</code> variables with the same name</li>
+<li>If a job's <code>repl</code> is set to true, all commands are sent to the terminal as one session. For example, if the first command is <code>ssh aaa@www</code>, the remaining commands will be input as if typed into the shell (e.g., password)</li>
+<li>A job can use <code>need-job</code> to wait for another job to finish before running; by default, all jobs run in parallel</li>
+</ol>

@@ -1,0 +1,56 @@
+<h1>File Management (Not for Cloud Disk Access, Future Development Not Planned)</h1>
+<p>Supports various file editing and preview operations.</p>
+<h1>Supported Preview File Types</h1>
+<ul>
+<li>Images, videos, Markdown, Excalidraw (whiteboard drawing), and other formats supported by the browser (such as PDFs).</li>
+</ul>
+<h1>File Compression/Decompression</h1>
+<ul>
+<li>Supports compression of <code>tar</code>, <code>zip</code>, and <code>gz</code> format files. You can select multiple files and click the <strong>Compress</strong> button on the menu bar.</li>
+<li>Supports decompression of <code>tar</code>, <code>zip</code>, <code>gz</code>, and <code>rar</code> format files.</li>
+</ul>
+<h1>Large File Breakpoint and Chunked Uploads</h1>
+<ul>
+<li>The default method is <strong>HTTP upload</strong>. You can set the maximum upload concurrency in the <strong>Settings - Environment</strong> section. For directories that meet certain criteria, <strong>chunked uploads</strong> will be used (via WebSocket). Different upload modes are used for different directories, which allows for optimizing the concurrency for different types of hard drives (e.g., mechanical hard drives).</li>
+</ul>
+<h1>Log Viewing</h1>
+<ul>
+<li>Supports opening and viewing text files of any size instantly. Right-click any file and select <strong>Open as Log</strong> to scroll through the entire file and view real-time file content. Currently, only UTF-8 encoded files are supported.</li>
+</ul>
+<h1>Code Editing</h1>
+<ul>
+<li>Uses <strong>Ace Editor</strong>, which supports all code formats.</li>
+<li>There is also a <strong>Studio Editor</strong> mode. Right-click on a folder and select <strong>Open as Studio</strong> to open an editor page similar to <strong>VSCode</strong>, suitable for temporary development environments on Linux servers.</li>
+</ul>
+<h1>Image Editing (filerobot-image-editor)</h1>
+<p>For image files such as PNG, right-click to select <strong>Edit</strong>.</p>
+<h1>Whiteboard Drawing (Excalidraw)</h1>
+<p>The project integrates <strong>Excalidraw</strong>. When creating a file, select <strong>Excalidraw</strong> or set the file extension to <code>.draw</code>. Double-click to open and start whiteboard drawing.</p>
+<h1>Recycle Bin</h1>
+<ul>
+<li>In <strong>Settings - System</strong>, you can set the <strong>Recycle Bin directory</strong> and its status with the format: <code>[Parent Directory of Deleted Files] Recycle Bin Directory [; ...]</code>.</li>
+<li>Different directories can have different Recycle Bin directories to avoid issues when mounting multiple hard drives, such as NTFS, on Linux.</li>
+<li>Files deleted using commands will <strong>not</strong> be moved to the Recycle Bin.</li>
+</ul>
+<h1>Protected Paths</h1>
+<ul>
+<li>In <strong>Settings - Environment</strong>, you can set <strong>Protected Paths</strong> for both the system and personal directories. Files in these paths cannot be deleted to avoid accidental deletion of important files.</li>
+</ul>
+<h1>Search</h1>
+<p>Currently, search is only supported within the current directory.</p>
+<h1>Quick Directory Jump</h1>
+<p>Click the breadcrumb of a directory to jump to another directory. It supports relative paths, as long as it’s within the current root directory.</p>
+<h1>Video Format Conversion</h1>
+<ul>
+<li>Requires <strong>FFmpeg</strong> installed in the system. For any video file, right-click to choose the conversion format. If FFmpeg is pre-installed, the installation size might be too large.</li>
+</ul>
+<h1>Switch Between Multiple Root Directories</h1>
+<ul>
+<li>In the top-right corner of the folder, you can select to switch between multiple root directories. All file operations are relative to the current root directory.</li>
+<li>You can set multiple root directories (folder paths) in <strong>Settings - Environment</strong>.</li>
+</ul>
+<h1>Other Features</h1>
+<ul>
+<li>Right-click to sort files.</li>
+<li>For images, you can right-click any image and select <strong>Close Preview</strong>, which is useful when dealing with network issues.</li>
+</ul>

@@ -1,0 +1,13 @@
+<h1>Error During <code>npm install</code></h1>
+<p>Some dependencies are downloaded from GitHub, which can be unstable to access from mainland China. Neither <code>cnpm</code> nor <code>yarn</code> can fully resolve this issue.<br>
+If you encounter persistent problems, consider installing a C++ build environment, along with Python, Visual Studio, and <code>node-gyp</code>.<br>
+You can refer to this <a href="https://blog.csdn.net/jjocwc/article/details/134152602">link</a> for more help.</p>
+<hr>
+<h1>Why Use Node.js for the Backend</h1>
+<ul>
+<li>Using Node.js allows both frontend and backend development in JavaScript, making development more convenient.</li>
+<li>Since this is a server management tool focused on file read/write, configuration updates, command execution, and network forwarding, Node.js is suitable despite being single-threaded. These system I/O APIs are handled concurrently at the OS level. Using <code>await</code> or <code>.then</code>, the results are queued and executed in the single-threaded JavaScript runtime.</li>
+<li>For features that require computation, such as process resource monitoring and full-text file log searches, these are offloaded to worker threads and executed in parallel, so they don't block the main thread.</li>
+<li>Node.js interacts with C++ easily. At one point, I wanted to experiment with building a VPN — many VPN-related projects are written in C++. Node.js makes integration and packaging with C++ straightforward, which isn’t as convenient in other languages like Java.</li>
+<li><code>filebrowser</code> uses Go for its backend. While Go indeed has lower memory consumption, I personally don’t like Go’s syntax. Considering the above points, I chose not to use Go.</li>
+</ul>

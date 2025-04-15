@@ -1,6 +1,6 @@
-<!-- _sidebar.md -->
 
-- [欢迎](/home.md)
+- **[English Page](/en)**
+- [欢迎](/zh-CN/home.md)
 - [安装](/zh-CN/安装.md)
 - [命令参数](/zh-CN/命令参数.md)
 
