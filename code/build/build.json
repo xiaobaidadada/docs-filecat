@@ -62,11 +62,11 @@
     },
     {
       "path": "zh-CN\\menu.md",
-      "mtime": 1744704502935
+      "mtime": 1744709661439
     },
     {
       "path": "en\\menu.md",
-      "mtime": 1744705233590
+      "mtime": 1744709661447
     },
     {
       "path": "en\\使用场景.md",
@@ -111,6 +111,14 @@
     {
       "path": "en\\技术\\常见问题.md",
       "mtime": 1744705388948
+    },
+    {
+      "path": "en\\install.md",
+      "mtime": 1744704265860
+    },
+    {
+      "path": "zh-CN\\install.md",
+      "mtime": 1744624223885
     }
   ]
 }

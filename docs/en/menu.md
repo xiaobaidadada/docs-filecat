@@ -1,7 +1,7 @@
 
 - **[中文](/zh-CN)**
 - [Welcome](/en/home.md)
-- [Install](/en/安装.md)
+- [Install](/en/install.md)
 - [Command](/en/命令参数.md)
 
 - Function

@@ -1,7 +1,7 @@
 
 - **[English Page](/en)**
 - [欢迎](/zh-CN/home.md)
-- [安装](/zh-CN/安装.md)
+- [安装](/zh-CN/install.md)
 - [命令参数](/zh-CN/命令参数.md)
 
 - 功能详解
