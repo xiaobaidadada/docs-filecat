@@ -85,6 +85,7 @@ async function renderMenu() {
     now_langue = lan;
     let menu_md = `docs/${lan}/menu.md`;
     menu.innerHTML = await Http_util.get(menu_md);
+    renderMenuMdList();
 }
 
 // 在页面加载时绑定事件监听器
