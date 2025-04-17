@@ -1,0 +1,25 @@
+<h3>🌐 Filecat Network Proxy Usage Guide</h3>
+<h4>📌 Overview</h4>
+<ul>
+<li>After starting the server on one machine, other machines can connect as clients.</li>
+<li>Each client will create a virtual IP on its local machine (on Windows, it must run with administrator privileges to create the virtual IP successfully).</li>
+<li>Even on the same machine, you can run the client and connect to the local server by setting the server IP to <code>localhost</code>.</li>
+</ul>
+<h4>🔌 About P2P (UDP Hole Punching)</h4>
+<ul>
+<li>Previously, P2P communication using UDP hole punching was supported. However, due to restrictions on UDP by ISPs in China—especially China Mobile, where many regions block UDP—this feature has been removed and is no longer maintained.</li>
+</ul>
+<hr>
+<h3>✅ Steps to Use</h3>
+<ol>
+<li><strong>Install and start Filecat on a computer with a public IP address, and enable server mode.</strong></li>
+<li><strong>Install and run Filecat on other computers without public IPs, enter the server's key, port, and other information, and enable client mode.</strong><br>
+Each client sets its own virtual IP address.</li>
+<li><strong>All connected clients can now communicate with each other.</strong><br>
+On Windows, Filecat's virtual network is set as “Public” by default. To enable ping communication, you need to manually change it to “Private.” However, this does not affect regular communication.</li>
+<li><strong>The server can also run a client that connects to itself.</strong><br>
+This allows the server to actively send network requests to clients without public IPs.</li>
+</ol>
+<hr>
+<h3>⚙️ TCP Proxy Function</h3>
+<p>With the TCP proxy feature, you can access other devices on the same local network as a specific client—effectively achieving intranet penetration and remote access.</p>
