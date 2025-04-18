@@ -1,70 +1,157 @@
-<p>Currently, macOS is <strong>not officially supported</strong>, but you can run FileCat on macOS using <strong>Docker</strong>. Some features are implemented in <strong>C</strong>, making them non-cross-platform. Since I don't have a Mac to test with, it most likely won't install or run successfully on macOS natively.</p>
-<h3>1. Demo Experience</h3>
-<p>URL: <a href="http://demo.filecat.xiaobaidadada.fun:5569/">http://demo.filecat.xiaobaidadada.fun:5569/</a></p>
-<ul>
-<li>Username / Password: <code>admin</code> / <code>admin</code></li>
-</ul>
-<h3>2. Run via NPM</h3>
-<ul>
-<li>If your server already has <strong>Node.js</strong> and <strong>npm</strong> installed, you can install FileCat globally using:<br>
-<code>npm install filecat -g</code><br>
-Then run it with the <code>filecat</code> command.<br>
-Alternatively, install it locally with <code>npm install filecat</code>, then run it via:<br>
-<code>npx filecat</code></li>
-<li>If your network is slow, consider using the Taobao mirror:<br>
-<code>npm config set registry https://registry.npmmirror.com</code><br>
-Or install directly using the mirror:<br>
-<code>npm install -g filecat --registry https://registry.npmmirror.com</code></li>
-<li>Some dependencies are prebuilt and hosted on GitHub (supports Node.js versions 16, 18, 20, 22).<br>
-If GitHub is slow or inaccessible, you may need to compile locally. Check the error messages and install missing dependencies, such as:<br>
-<code>npm -g install node-addon-api</code><br>
-If GitHub access is completely unavailable, you can use the <strong>binary</strong> or <strong>Docker</strong> methods instead.<br>
-For Windows build issues, see this article:<br>
-<a href="https://blog.csdn.net/jjocwc/article/details/134152602">https://blog.csdn.net/jjocwc/article/details/134152602</a></li>
-</ul>
-<h3>3. Run via Binary</h3>
-<p>Download the <a href="https://github.com/xiaobaidadada/filecat/releases">latest release</a><br>
-Extract the archive for your platform. It includes all resources and a <code>node.exe</code>, along with a startup script.</p>
-<ul>
-<li>
-<p>Only x64 builds are provided; if you're on ARM, you need to build it yourself.</p>
-</li>
-<li>
-<p>Run the script:<br>
-<code>run.cmd --port 5567 --base_folder /home</code><br>
-(On Linux: <code>run.sh</code>)<br>
-If <code>username</code> is not set, default credentials will be <code>admin/admin</code>.</p>
-</li>
-<li>
-<p>To use a config file:<br>
-<code>run.sh --env ./env</code><br>
-On Linux, you may need to run <code>sudo chmod +x ./run.sh</code> to make it executable.</p>
-</li>
-</ul>
-<h3>4. Run as a systemd service (Linux only)</h3>
-<p>This method installs FileCat as a <strong>background service</strong> via <code>systemd</code>, which requires <strong>root privileges</strong>.<br>
-Recommended for Linux users.</p>
-<ul>
-<li>Download the latest <code>filecat-linux</code> binary</li>
-<li>Make it executable:<br>
-<code>chmod +x filecat-linux</code></li>
-<li>Install with:<br>
-<code>./filecat-linux --install linux</code><br>
-If you've installed FileCat via npm, you can also run:<br>
-<code>filecat --install linux</code></li>
-</ul>
-<h3>5. Run via Docker</h3>
-<p>Use the following command to run FileCat in Docker:</p>
+<h2>❗ macOS Support Notice</h2>
+<p>Currently, <strong>macOS is not officially supported</strong>.<br>
+Some core features are written in C and are <strong>not cross-platform compatible</strong>.<br>
+Since I don't have access to a Mac device, it's <strong>very likely</strong> that the software won't compile or run properly on macOS.</p>
+<blockquote>
+<p><strong>However, you can still run Filecat on macOS using Docker.</strong></p>
+</blockquote>
+<hr>
+<h2>🌐 Live Demo</h2>
+<p>Demo: <a href="http://demo.filecat.xiaobaidadada.fun:5569/">http://demo.filecat.xiaobaidadada.fun:5569/</a><br>
+Username: <code>admin</code><br>
+Password: <code>admin</code></p>
+<hr>
+<h2>🚀 Installing &amp; Running Filecat</h2>
+<h3>2.1 Using npm</h3>
+<h4>1. Global Installation</h4>
 
       <div class="code-block-with-copy">
-        <button class="copy-btn" data-code="docker run -d --name filecat --restart=always --net=host -v /home:/home ghcr.io/xiaobaidadada/filecat:latest --port 5567 --base_folder /home" >复制</button>
-        <pre><code>docker run -d --name filecat --restart=always --net=host -v /home:/home ghcr.io/xiaobaidadada/filecat:latest --port 5567 --base_folder /home</code></pre>
-      </div><h3>6. Run from Git Clone</h3>
-<p>Clone the repository, then run:</p>
+        <button class="copy-btn" data-code="npm install -g filecat" >复制</button>
+        <pre><code>npm install -g filecat</code></pre>
+      </div><p>If you're in China, use a faster mirror:</p>
 
       <div class="code-block-with-copy">
-        <button class="copy-btn" data-code="npm run dev
-node build/main.js" >复制</button>
-        <pre><code>npm run dev
-node build/main.js</code></pre>
+        <button class="copy-btn" data-code="npm install -g filecat --registry https://registry.npmmirror.com" >复制</button>
+        <pre><code>npm install -g filecat --registry https://registry.npmmirror.com</code></pre>
+      </div><h4>2. Run Filecat</h4>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="filecat --port 5567" >复制</button>
+        <pre><code>filecat --port 5567</code></pre>
+      </div><h4>3. Open in Browser</h4>
+<p>Go to: <a href="http://localhost:5567">http://localhost:5567</a><br>
+Default username/password: <code>admin</code> / <code>admin</code></p>
+<h4>⚠️ Notes:</h4>
+<ul>
+<li>
+<p>Some native modules are prebuilt and hosted on GitHub (supported Node.js versions: 16, 18, 20, 22).</p>
+</li>
+<li>
+<p>If GitHub is slow or blocked, installation may fail. You can try installing dependencies manually.</p>
+</li>
+<li>
+<p>If installing via npm fails due to GitHub issues, please use the <strong>binary release</strong> or <strong>Docker</strong> method below.</p>
+</li>
+<li>
+<p>For Windows build issues, see this article: <a href="https://blog.csdn.net/jjocwc/article/details/134152602">CSDN Blog</a></p>
+</li>
+</ul>
+<hr>
+<h3>2.2 Binary Release</h3>
+<ol>
+<li>Download the latest <a href="https://github.com/xiaobaidadada/filecat/releases">release</a>.</li>
+<li>Extract and run using the included <code>run.cmd</code> (Windows) or <code>run.sh</code> (Linux).</li>
+</ol>
+<p>Example:</p>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="run.cmd --port 5567 --base_folder /home" >复制</button>
+        <pre><code>run.cmd --port 5567 --base_folder /home</code></pre>
+      </div><blockquote>
+<p>Default credentials: <code>admin</code> / <code>admin</code></p>
+</blockquote>
+<p>To use a config file:</p>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="run.sh --env ./env" >复制</button>
+        <pre><code>run.sh --env ./env</code></pre>
+      </div><blockquote>
+<p>On Linux, make sure <code>run.sh</code> is executable:</p>
+</blockquote>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="chmod +x run.sh" >复制</button>
+        <pre><code>chmod +x run.sh</code></pre>
+      </div><blockquote>
+<p>Only x64 builds are provided. For ARM, please build from source.</p>
+</blockquote>
+<hr>
+<h3>2.3 Docker</h3>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="docker run -d \
+  --name filecat \
+  --restart=always \
+  --net=host \
+  -v /home:/home \
+  ghcr.io/xiaobaidadada/filecat:latest \
+  --port 5567 --base_folder /home" >复制</button>
+        <pre><code>docker run -d \
+  --name filecat \
+  --restart=always \
+  --net=host \
+  -v /home:/home \
+  ghcr.io/xiaobaidadada/filecat:latest \
+  --port 5567 --base_folder /home</code></pre>
+      </div><hr>
+<h2>🛠️ Running Filecat as a System Service</h2>
+<h3>3.1 Linux (systemd)</h3>
+<ol>
+<li>Run the install command (currently only available in Chinese):</li>
+</ol>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="sudo filecat --install linux" >复制</button>
+        <pre><code>sudo filecat --install linux</code></pre>
+      </div><ol start="2">
+<li>Start the service:</li>
+</ol>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="sudo systemctl start filecat" >复制</button>
+        <pre><code>sudo systemctl start filecat</code></pre>
+      </div><ol start="3">
+<li>Stop the service:</li>
+</ol>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="sudo systemctl stop filecat" >复制</button>
+        <pre><code>sudo systemctl stop filecat</code></pre>
+      </div><hr>
+<h3>3.2 Windows (NSSM)</h3>
+<p>Use <a href="https://nssm.cc/download">NSSM</a> to install Filecat as a Windows service:</p>
+<ol>
+<li>Download NSSM and add its directory to your system PATH.</li>
+<li>Create a startup script <code>start.bat</code> and an <code>env</code> config file:</li>
+</ol>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="filecat --env ./env" >复制</button>
+        <pre><code>filecat --env ./env</code></pre>
+      </div><ol start="3">
+<li>Open a Command Prompt as <strong>Administrator</strong>, then run:</li>
+</ol>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="nssm install filecat" >复制</button>
+        <pre><code>nssm install filecat</code></pre>
+      </div><ol start="4">
+<li>
+<p>A GUI window will appear — set the path to <code>start.bat</code>.</p>
+</li>
+<li>
+<p>Start the service:</p>
+</li>
+</ol>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="net start filecat" >复制</button>
+        <pre><code>net start filecat</code></pre>
+      </div><ol start="6">
+<li>Stop the service:</li>
+</ol>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="net stop filecat" >复制</button>
+        <pre><code>net stop filecat</code></pre>
       </div>
