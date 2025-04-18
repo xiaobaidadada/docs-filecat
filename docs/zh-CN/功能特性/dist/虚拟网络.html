@@ -11,3 +11,14 @@
 </ol>
 <h1>Tcp代理</h1>
 <p>配合tcp代理功能，可以访问某个客户端所在内网的其它主机。</p>
+<h1>修改访问策略为私有</h1>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="Set-NetConnectionProfile -InterfaceAlias &quot;filecat&quot; -NetworkCategory Private" >复制</button>
+        <pre><code>Set-NetConnectionProfile -InterfaceAlias &quot;filecat&quot; -NetworkCategory Private</code></pre>
+      </div><p>查看是否修改成功</p>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="Get-NetConnectionProfile" >复制</button>
+        <pre><code>Get-NetConnectionProfile</code></pre>
+      </div>

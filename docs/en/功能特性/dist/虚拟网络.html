@@ -1,25 +1,31 @@
-<h3>🌐 Filecat Network Proxy Usage Guide</h3>
-<h4>📌 Overview</h4>
+<h2>📡 Filecat Usage Guide</h2>
+<h3>🔧 Overview</h3>
 <ul>
-<li>After starting the server on one machine, other machines can connect as clients.</li>
-<li>Each client will create a virtual IP on its local machine (on Windows, it must run with administrator privileges to create the virtual IP successfully).</li>
-<li>Even on the same machine, you can run the client and connect to the local server by setting the server IP to <code>localhost</code>.</li>
-</ul>
-<h4>🔌 About P2P (UDP Hole Punching)</h4>
-<ul>
-<li>Previously, P2P communication using UDP hole punching was supported. However, due to restrictions on UDP by ISPs in China—especially China Mobile, where many regions block UDP—this feature has been removed and is no longer maintained.</li>
+<li><strong>Server Mode</strong>: When Filecat is started in server mode on a computer, other computers can run the client mode to connect to this server. Each client creates a virtual IP on the local system. On Windows, this requires running Filecat with administrator privileges.</li>
+<li><strong>Local Connection</strong>: A client can also connect to a server running on the same machine by simply setting the server IP to <code>localhost</code>.</li>
+<li><strong>P2P Notice (UDP Hole Punching)</strong>: Filecat previously supported P2P communication via UDP hole punching. However, due to heavy restrictions by Chinese ISPs—especially China Mobile—UDP is often unreliable or blocked in many regions. As a result, this feature has been removed and is no longer maintained.</li>
 </ul>
 <hr>
-<h3>✅ Steps to Use</h3>
+<h2>🚀 Steps to Use</h2>
 <ol>
-<li><strong>Install and start Filecat on a computer with a public IP address, and enable server mode.</strong></li>
-<li><strong>Install and run Filecat on other computers without public IPs, enter the server's key, port, and other information, and enable client mode.</strong><br>
-Each client sets its own virtual IP address.</li>
-<li><strong>All connected clients can now communicate with each other.</strong><br>
-On Windows, Filecat's virtual network is set as “Public” by default. To enable ping communication, you need to manually change it to “Private.” However, this does not affect regular communication.</li>
-<li><strong>The server can also run a client that connects to itself.</strong><br>
-This allows the server to actively send network requests to clients without public IPs.</li>
+<li>Install and start Filecat in server mode on a computer with a public IP address.</li>
+<li>Install Filecat on other computers that <strong>do not have public IPs</strong>, configure the server key, port, and other settings, then start the client mode. Each client sets its own virtual IP.</li>
+<li>Once connected, all clients can communicate with each other over the virtual network.</li>
+<li><strong>Note</strong>: On Windows, the virtual network created by Filecat is set to <strong>Public</strong> by default. You must manually change it to <strong>Private</strong> in order to allow ICMP (ping) traffic. However, this does not affect normal communication.</li>
+<li>The server can also run a client instance and connect to itself. This allows the server to actively send requests to clients located behind NATs or without public IPs.</li>
 </ol>
 <hr>
-<h3>⚙️ TCP Proxy Function</h3>
-<p>With the TCP proxy feature, you can access other devices on the same local network as a specific client—effectively achieving intranet penetration and remote access.</p>
+<h2>🔁 TCP Proxy Function</h2>
+<p>With the TCP proxy feature enabled, the server can access other hosts within the client’s local network.</p>
+<hr>
+<h2>🔐 Change Network Profile (Public → Private)</h2>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="Set-NetConnectionProfile -InterfaceAlias &quot;filecat&quot; -NetworkCategory Private" >复制</button>
+        <pre><code>Set-NetConnectionProfile -InterfaceAlias &quot;filecat&quot; -NetworkCategory Private</code></pre>
+      </div><h3>✅ Check if the change was successful:</h3>
+
+      <div class="code-block-with-copy">
+        <button class="copy-btn" data-code="Get-NetConnectionProfile" >复制</button>
+        <pre><code>Get-NetConnectionProfile</code></pre>
+      </div>
