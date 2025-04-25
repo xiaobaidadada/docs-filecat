@@ -15,59 +15,62 @@ This is a workflow feature that uses GitHub-style workflow syntax (YAML format).
 
 # Syntax
 ```yaml
-name: test  # Name ({{}} not supported)
-run-name: Build Project # Name displayed in logs
 
-# import-files: # Import multiple config files, used by `use-yml` in steps
+name: test  # 名字 不支持 {{}}
+run-name: 构建项目 # 用于日志显示的名字
+
+# import-files: # 导入多个文件的配置 用于下面的 use-yml 指令
 #     - ./ok.yml
+inputs:
+  job: # 输入参数的 key 子字段只是为了修饰 调用的时候 使用  {{{job}}} 会添加并覆盖到 env 中的值
+    description: "任务参数"
+    required: true # 是否必须
+    default: build # 默认值
 
-inputs: # Input parameters
-  job:
-    description: "Task parameter"
-    required: true # Required
-    default: build # Default value
-
-env: # Define environment variables. These can be used in `run`, `cwd`, or `run-name` using {{}}. Use single quotes to wrap variables. Use {{{ }}} for raw output (Mustache.js style).
+env: # 定义一些环境变量 这些 环境变量可以在 run 或者 cwd 中 或者 run-name 中使用  {{}} 来表达 使用的时候 必须要用 '' 字符串括起来，不然会被处理成变量 {{{ }}} 是非转义方式 采用 Mustache js
   version: 1
   cmd_install: npm install
   token: 123
-  # Some variables are automatically added during execution:
-  # filecat_user_id: 1
-  # filecat_user_name: admin
-  # filecat_user_note: Note
+  # 有几个参数是每次执行自动添加的
+#  filecat_user_id: 1 # 用户id
+#  filecat_user_name: admin # 用户名字
+#  filecat_user_note: 备注 #用户备注
 
-username: admin # Username to execute the script under
-user_id: 1 # Overrides `username`; only users with specific permissions can be set here
+username: admin # 需要执行用户的账号 该脚本需要运行在某个用户下
+user_id: 1 # 会覆盖 username 对应的用户 id 只允许特定设置的用户在这里可以被设置 运行
 
-# All jobs are executed in parallel by default
+# 所有的jobs下的任务都会被并行执行
 jobs:
   build-job1:
-    if: 1==1 # Whether this job should run
-    cwd: E:\test # Execution directory (must be absolute). Default is the directory of the YAML file. Clean-up must be done manually.
-    name: Phase 1
-    repl: false # Interactive execution. If the previous step hasn't finished and has output, the next one will run. Must be managed properly to avoid indefinite hanging.
-    # need-job: build-job2 # Wait for another job to finish (must be within this file)
-    sys-env: # These will be added to the shell environment during execution
+    if: 1==1 # 判断这个job要不要执行
+    cwd: E:\test # 需要一个实际的执行目录 默认是当前的yml所在目录 目录内的文件清理需要自己使用命令操作 必须是绝对路径
+    name: 第一阶段执行
+    repl: false # 交互式运行 当上一个step 运行没有结束 有输出的时候 就执行下一个 step 默认是 false 必须要自己设置好流程 避免出现一直等待 那么只能手动关闭了，使用repl 无法使用 use-yml if process_exit 等特殊 指令
+    # need-job: build-job2 # 需要别的job先完成 只能是本文件内的
+    sys-env: # 这里的token 会在执行的添加到shell的环境变量中
       token: {{{token}}}
     env:
-      temp: '{{token}}123' # Temporary variables
-    steps:
-      - use-yml: test2 # Use another YAML's `name`
+      temp: '{{token}}123' # 用于设置一些临时变量
+    steps: # 这些脚本会按顺序执行
+      - use-yml: test2 # 使用其它 yml 文件中的 name
         with-env:
-          version: 18 # Pass environment variables to external YAML
-      # - run: pip.exe install setuptools
-      # - run: npm.cmd install
-      # - run: ok1
-      # - run: ls
+          version: 18 # 使用其它文件的时候 给一些环境变量参数
+      #   - run: pip.exe install setuptools
+      #   - run: npm.cmd install
+      #   - run: ok1
+      #   - run: ls
       - run: npm run build
-      # - run: npm publish
-
+    #   - run: npm publish # 执行一些脚本
   build-job2:
     cwd: E:\test2
-    name: Phase 2
+    name: 第二阶段
     steps:
-      - if: 1==2 # Conditional execution
+      - if: 1==2 # 判断这个step要不要执行
         run: ls
+        process_exit: 0  # 程序 退出 输入数字  0 -1
+
+
+
 ```
 
 ## Core Syntax
