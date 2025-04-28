@@ -8,13 +8,6 @@
 
 ---
 
-## 🌐 在线体验
-
-体验地址：[http://demo.filecat.xiaobaidadada.fun:5569/](http://demo.filecat.xiaobaidadada.fun:5569/)  
-登录账号：`admin`  
-登录密码：`admin`
-
----
 
 ## 🚀 安装与运行 Filecat
 

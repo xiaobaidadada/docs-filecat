@@ -9,13 +9,6 @@ Since I don't have access to a Mac device, it's **very likely** that the softwar
 > **However, you can still run Filecat on macOS using Docker.**
 
 ---
-## 🌐 Live Demo
-
-Demo: [http://demo.filecat.xiaobaidadada.fun:5569/](http://demo.filecat.xiaobaidadada.fun:5569/)  
-Username: `admin`  
-Password: `admin`
-
----
 
 ## 🚀 Installing & Running Filecat
 
