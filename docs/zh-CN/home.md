@@ -12,9 +12,10 @@
 - 自动化构建
 - 系统资源监控
 - Docker 管理
+- windows, mac 下可以控制电脑的http代理
 - 超大日志文件实时查看
 
-当前 FileCat 可运行在 **Linux** 和 **Windows** 系统上，**不支持 macOS 系统**。
+当前 FileCat 可运行在 **Linux** 和 **Windows** ,**MacOS** 系统上。
 
 如果你有任何建议或遇到问题，欢迎在 GitHub 提 Issue，或加入我们的 QQ 群交流：**824838674**
 

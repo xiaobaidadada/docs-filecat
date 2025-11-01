@@ -15,7 +15,7 @@ This is the official documentation for **FileCat**, where you can find detailed 
 - Docker management
 - Real-time viewing of extremely large logs
 
-FileCat is currently compatible with **Linux** and **Windows** systems, but **not supported on macOS**.
+FileCat is currently compatible with **Linux** and **Windows** ,**MacOS**systems.
 
 If you have any suggestions or issues, feel free to open an issue 
 
