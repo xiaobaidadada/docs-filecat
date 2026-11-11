@@ -1,89 +1,266 @@
+/* ==========================================================================
+   正文区域（markdown 渲染结果容器）
+   ========================================================================== */
+
 body {
-    font-family: "Roboto", sans-serif;
-    padding-top: 4em;
-    background-color: #fafafa;
-    color: #333333;
-
-}
-
-#editor {
-    width: 100%;
-    height: 200px;
-    margin-bottom: 20px;
+    margin: 0;
+    padding-top: var(--fc-header-height);
+    font-family: var(--fc-font);
+    background-color: var(--fc-bg);
+    color: var(--fc-text);
+    -webkit-font-smoothing: antialiased;
 }
 
 #preview {
-    /*border: 1px solid #ddd;*/
-    padding: 20px;
-    border-radius: 5px;
-    min-height: 1em;
-    width: calc(100% - 20%);
-    background-color: #fafafa;
+    /* 正文最大宽度限制，大屏不会拉成一行很长的文字，阅读更舒服 */
+    max-width: 56rem;
+    /* 水平居中：在 main 区域内居中即可，配合较大左右 padding 观感更平衡 */
+    margin: 0 auto;
+    /* 上下留白大一点，接近文档站的呼吸感 */
+    padding: 3.5rem 3.5rem 6rem;
+    min-height: calc(100vh - var(--fc-header-height));
+
+    background-color: var(--fc-bg);
+    border-radius: 0;
+    font-size: 1rem;
+    line-height: 1.78;
 }
 
-@media (max-width: 736px) {
-    #preview  {
-        width: calc(100% - 2em);
-    }
+/* --------------------------------------------------------------------------
+   正文里的标题：层级靠字重和间距区分，不靠大色块
+   -------------------------------------------------------------------------- */
+#preview h1 {
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.85rem;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--fc-text-heading);
+    border-bottom: 1px solid var(--fc-border);
 }
 
+#preview h2 {
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.6rem;
+    font-size: 1.4rem;
+    font-weight: 650;
+    color: var(--fc-text-heading);
+    border-bottom: 1px solid var(--fc-border);
+}
+
+#preview h3 {
+    margin: 2rem 0 0.75rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--fc-text-heading);
+}
+
+#preview h4,
+#preview h5,
+#preview h6 {
+    margin: 1.5rem 0 0.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--fc-text-heading);
+}
+
+#preview p {
+    margin: 0 0 1rem;
+}
+
+#preview a {
+    color: var(--fc-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--fc-transition);
+}
+
+#preview a:hover {
+    border-bottom-color: currentColor;
+}
+
+#preview ul,
+#preview ol {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+}
+
+#preview li {
+    margin: 0.3rem 0;
+}
+
+#preview li::marker {
+    color: var(--fc-text-faint);
+}
+
+/* 引用块：左侧细色条 + 浅底 */
+#preview blockquote {
+    margin: 1.25rem 0;
+    padding: 0.75rem 1.15rem;
+    color: var(--fc-text-muted);
+    background-color: var(--fc-bg-subtle);
+    border-left: 3px solid var(--fc-border-strong);
+    border-radius: 0 var(--fc-radius-sm) var(--fc-radius-sm) 0;
+}
+
+#preview blockquote > :last-child {
+    margin-bottom: 0;
+}
+
+/* 行内代码 */
+#preview :not(pre) > code {
+    padding: 0.15em 0.4em;
+    font-family: var(--fc-font-mono);
+    font-size: 0.88em;
+    color: #b4326b;
+    background-color: var(--fc-bg-subtle);
+    border: 1px solid var(--fc-border);
+    border-radius: var(--fc-radius-sm);
+}
+
+/* 表格：去重边框，用浅线，和截图一样的克制观感 */
+#preview table {
+    display: table;
+    width: 100%;
+    margin: 1.25rem 0;
+    border-collapse: collapse;
+    font-size: 0.94rem;
+}
+
+#preview th {
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--fc-text-heading);
+    background-color: var(--fc-bg-subtle);
+    border: 1px solid var(--fc-border);
+}
+
+#preview td {
+    padding: 0.6rem 0.9rem;
+    border: 1px solid var(--fc-border);
+}
+
+#preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--fc-radius);
+}
+
+#preview hr {
+    height: 1px;
+    margin: 2.5rem 0;
+    background-color: var(--fc-border);
+    border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   代码块 + 复制按钮（结构由 md_util.mjs 生成，不能改结构，只能改样式）
+   -------------------------------------------------------------------------- */
 .code-block-with-copy {
-    position: relative; /* 让按钮相对代码块定位 */
+    position: relative;
+    margin: 1.25rem 0;
 }
 
+.code-block-with-copy pre {
+    margin: 0;
+    padding: 1rem 1.15rem;
+    overflow-x: auto;
+    background-color: var(--fc-bg-subtle);
+    border: 1px solid var(--fc-border);
+    border-radius: var(--fc-radius);
+}
+
+.code-block-with-copy pre code {
+    padding: 0;
+    font-family: var(--fc-font-mono);
+    font-size: 0.875rem;
+    line-height: 1.65;
+    background: transparent;
+    border: 0;
+}
+
+/* 复制按钮：默认低调，悬停在代码块上才明显，避免打扰阅读 */
 .copy-btn {
     position: absolute;
-    top: 10px; /* 将按钮置于代码块的顶部 */
-    right: 10px; /* 将按钮置于代码块的右侧 */
-    background-color: #2196f3;
-    color: white;
-    border: none;
-    padding: 5px 10px;
+    top: 0.6rem;
+    right: 0.6rem;
+    z-index: 1;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+    color: var(--fc-text-muted);
+    background-color: var(--fc-bg);
+    border: 1px solid var(--fc-border);
+    border-radius: var(--fc-radius-sm);
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 12px; /* 调整按钮文字大小 */
+    opacity: 0;
+    transition: opacity var(--fc-transition), color var(--fc-transition),
+        border-color var(--fc-transition);
 }
 
-/*滚动条相关*/
+.code-block-with-copy:hover .copy-btn {
+    opacity: 1;
+}
 
-/* 自定义滚动条整体样式 */
+.copy-btn:hover {
+    color: var(--fc-primary);
+    border-color: var(--fc-primary);
+}
+
+/* 复制成功后的高亮状态（JS 会直接改 backgroundColor） */
+.copy-btn:active {
+    transform: translateY(1px);
+}
+
+/* --------------------------------------------------------------------------
+   滚动条：细、无轨道底色，接近截图观感
+   -------------------------------------------------------------------------- */
 ::-webkit-scrollbar {
-    /*width: 2px; !* 滚动条宽度，变细 *!*/
-    height: 0.7rem;
-    width: 0.7rem;
+    width: 0.6rem;
+    height: 0.6rem;
 }
 
-/* 滚动条轨道 */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* 轨道背景颜色 */
+    background: transparent;
 }
 
-/* 滚动条滑块 */
 ::-webkit-scrollbar-thumb {
-    background: rgb(210, 211, 212); /* 滑块颜色改为蓝色 */
-    border-radius: 0; /* 滑块圆角 */
-
+    background: var(--fc-border-strong);
+    border-radius: 999px;
+    /* 用透明边框把滑块缩窄一点，视觉更细 */
+    border: 2px solid transparent;
+    background-clip: content-box;
 }
 
-/* 滚动条滑块悬停状态 */
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(210, 211, 212); /* 悬停时滑块颜色 */
+    background: var(--fc-text-faint);
+    background-clip: content-box;
 }
 
-/* 修改滚动条轨道背景 */
-::-webkit-scrollbar-track {
-    background-color: transparent;  /* 设置滚动条背景颜色 */
-    border-radius: 0; /* 轨道也是直角 */
-}
-/* 鼠标悬停时，滚动条轨道变成灰色 */
-::-webkit-scrollbar-track:hover {
-    background: #f0f0f0; /* 灰色 */
-}
-
-
-
-a:focus {
+a:focus,
+button:focus {
     outline: none;
 }
 
+/* --------------------------------------------------------------------------
+   移动端
+   -------------------------------------------------------------------------- */
+@media (max-width: 736px) {
+    #preview {
+        padding: 1.5rem 1.15rem 4rem;
+        font-size: 0.95rem;
+    }
 
+    #preview h1 {
+        font-size: 1.6rem;
+    }
+
+    #preview h2 {
+        font-size: 1.25rem;
+    }
+
+    /* 移动端没有 hover，复制按钮常显 */
+    .copy-btn {
+        opacity: 1;
+    }
+}

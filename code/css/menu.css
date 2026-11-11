@@ -1,68 +1,159 @@
+/* ==========================================================================
+   左侧文档菜单
+   参考目标：浅色侧栏、分组标题弱化、子项悬停有浅底、折叠箭头简洁。
+   注意：这里的 li / p 结构是 markdown 渲染生成的，选择器必须按实际 DOM 写。
+   ========================================================================== */
 
 #menu {
-    padding-top: 1rem;
-    background-color: #fafafa;
-    width: 16em;
     position: fixed;
-    top: 4em;
+    top: var(--fc-header-height);
     left: 0;
+    bottom: 0;
     z-index: 1;
-    bottom: 0; /* 或 height: 100vh; */
-    right: 0;
-    overflow: auto;
+    width: var(--fc-menu-width);
+    padding: 1.25rem 0.75rem 2rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background-color: var(--fc-bg-subtle);
+    border-right: 1px solid var(--fc-border);
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
 
+/* 菜单内的 markdown 列表：去掉默认缩进与项目符号 */
+#menu ul,
+#menu ol {
+    list-style: none;
+    margin: 0;
+    padding-left: 0.75rem;
+}
 
+/* 顶层列表不要额外缩进 */
+#menu > ul {
+    padding-left: 0;
+}
+
+#menu li {
+    position: relative;
+    margin: 0 0 1px;
+    padding: 0;
+    cursor: pointer;
+    user-select: none;
+    border-radius: var(--fc-radius-sm);
+}
+
+/* 每一项的可点击文字区域 */
+#menu li > p {
+    margin: 0;
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--fc-radius-sm);
+    color: var(--fc-text);
+    transition: background-color var(--fc-transition), color var(--fc-transition);
+}
+
+#menu li > p:hover {
+    background-color: var(--fc-bg-hover);
+}
+
+/* 普通链接：同样按行内块铺满，方便点击 */
+#menu li > a {
+    display: block;
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--fc-radius-sm);
+    color: var(--fc-text);
+    text-decoration: none;
+    transition: background-color var(--fc-transition), color var(--fc-transition);
+}
+
+#menu li > a:hover {
+    background-color: var(--fc-bg-hover);
+    color: var(--fc-primary);
+}
+
+/* --------------------------------------------------------------------------
+   可折叠分组（JS 会给 li 加 .collapsible 和 .expanded）
+   折叠箭头放在右侧，用 CSS 画一个小三角，比字符更整齐
+   -------------------------------------------------------------------------- */
+#menu li.collapsible > p {
+    position: relative;
+    padding-right: 1.6rem;
+    font-weight: 500;
+    color: var(--fc-text-heading);
+}
+
+#menu li.collapsible > p::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0.7rem;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-top: -0.28rem;
+    border-right: 1.5px solid var(--fc-text-faint);
+    border-bottom: 1.5px solid var(--fc-text-faint);
+    /* 默认朝右，展开时旋转朝下 */
+    transform: rotate(-45deg);
+    transition: transform var(--fc-transition);
+}
+
+#menu li.collapsible.expanded > p::after {
+    margin-top: -0.1rem;
+    transform: rotate(45deg);
+}
+
+/* 子列表：展开后与父项之间留一点呼吸空间，并用左侧细线表示层级 */
+#menu li.collapsible > ul {
+    margin: 0.15rem 0 0.35rem 0.55rem;
+    padding-left: 0.55rem;
+    border-left: 1px solid var(--fc-border);
+}
+
+#menu li.collapsible > ul > li > a,
+#menu li.collapsible > ul > li > p {
+    font-weight: 400;
+    color: var(--fc-text-muted);
+}
+
+#menu li.collapsible > ul > li > a:hover,
+#menu li.collapsible > ul > li > p:hover {
+    color: var(--fc-text);
+}
+
+#menu a {
+    color: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   移动端：菜单变抽屉，默认隐藏
+   -------------------------------------------------------------------------- */
 @media (max-width: 736px) {
-    .menu-mobile {
-        background: #fff;
-        width: 16em;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        transition: .1s ease left;
+    #menu {
+        top: var(--fc-header-height);
+        width: 16rem;
+        /* 抽屉浮在内容之上，用较强阴影和右边框把它和正文彻底分开 */
+        box-shadow: 0 0 0 1px var(--fc-border), 0 12px 32px rgba(16, 24, 40, 0.18);
     }
+
+    .menu-mobile {
+        background: var(--fc-bg);
+    }
+
     .menu-mobile-hidden {
         display: none;
     }
 }
 
-#menu a {
-    color: inherit;
-    /*text-decoration: none;*/
+/* 侧栏滚动条：更细、更淡 */
+#menu::-webkit-scrollbar {
+    width: 0.45rem;
 }
 
-/*折叠*/
-#menu ul {
-    list-style: none;
-    padding-left: 1em;
+#menu::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 999px;
 }
 
-#menu li {
-    cursor: pointer;
-    position: relative;
-    padding-left: .8em;
-    margin-bottom: 0.3em;
-    user-select: none;
+#menu:hover::-webkit-scrollbar-thumb {
+    background: var(--fc-border-strong);
 }
-
-#menu li > p{
-    margin: 0;
-}
-
-#menu li.collapsible::before {
-    content: '>';
-    position: absolute;
-    left: 0;
-    font-size: 0.8em;
-    font-weight: bold;
-    transition: transform 0.2s;
-    color: #d29922;
-}
-
-#menu li.expanded::before {
-    transform: rotate(90deg);
-}
-
-
-
-
-

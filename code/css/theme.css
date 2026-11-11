@@ -1,0 +1,75 @@
+/* ==========================================================================
+   全局设计变量（Design Tokens）
+   这里集中定义颜色、圆角、阴影、间距等，其它 css 文件统一从这里取值，
+   调风格只需要改这一个文件。
+   ========================================================================== */
+
+:root {
+    /* ---------- 品牌色：沿用 FileCat 现有蓝色主色 ---------- */
+    --fc-primary: #2563eb;
+    --fc-primary-hover: #1d4ed8;
+    --fc-primary-soft: rgba(37, 99, 235, 0.08);
+
+    /* ---------- 中性色 ---------- */
+    --fc-bg: #ffffff;               /* 页面 / 内容区背景 */
+    --fc-bg-header: #ffffff;        /* 顶部栏背景 */
+    --fc-bg-subtle: #fafbfc;        /* 侧栏、header 等次级背景 */
+    --fc-bg-hover: #eef1f5;         /* 悬停态背景 */
+    --fc-border: #e8eaee;           /* 常规边框：细、浅 */
+    --fc-border-strong: #d5d9e0;
+
+    /* ---------- 文字 ---------- */
+    --fc-text: #1f2937;             /* 正文 */
+    --fc-text-heading: #111827;     /* 标题 */
+    --fc-text-muted: #6b7280;       /* 次要说明文字 */
+    --fc-text-faint: #9ca3af;       /* 极弱文字 */
+
+    /* ---------- 圆角：统一一套，截图风格是偏柔和的圆角 ---------- */
+    --fc-radius-sm: 6px;
+    --fc-radius: 10px;
+    --fc-radius-lg: 14px;
+
+    /* ---------- 阴影：克制，几乎只在卡片和浮层出现 ---------- */
+    --fc-shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
+    --fc-shadow: 0 1px 3px rgba(16, 24, 40, 0.06), 0 1px 2px rgba(16, 24, 40, 0.04);
+    --fc-shadow-lg: 0 8px 24px rgba(16, 24, 40, 0.08);
+
+    /* ---------- 尺寸 ---------- */
+    --fc-header-height: 3.5rem;
+    --fc-menu-width: 16rem;
+    --fc-content-max-width: 60rem;  /* 正文最大宽度，保证大屏不会拉得太宽 */
+
+    /* ---------- 字体 ---------- */
+    --fc-font: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    --fc-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+    /* ---------- 过渡：统一节奏，避免各处乱用 ---------- */
+    --fc-transition: 0.15s ease;
+}
+
+/* --------------------------------------------------------------------------
+   暗色主题：跟系统偏好自动切换，只覆盖颜色变量，布局完全复用
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fc-primary: #4d8bff;
+        --fc-primary-hover: #6ba0ff;
+        --fc-primary-soft: rgba(77, 139, 255, 0.14);
+
+        --fc-bg: #16181d;
+        --fc-bg-header: #1b1e24;
+        --fc-bg-subtle: #1c1f26;
+        --fc-bg-hover: #262a33;
+        --fc-border: #2c313a;
+        --fc-border-strong: #3a404b;
+        --fc-text: #d6dae1;
+        --fc-text-heading: #f0f2f5;
+        --fc-text-muted: #98a1ae;
+        --fc-text-faint: #6b7482;
+
+        --fc-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+        --fc-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+        --fc-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+}

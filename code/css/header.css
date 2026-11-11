@@ -1,57 +1,118 @@
-/* 任何位置加上这个标签都会显示在顶层
- <header className={"header"}>
-                <Action icon={"more_vert"} />
-            </header>
-*/
+/* ==========================================================================
+   顶部栏
+   参考目标：干净、留白、细边框、极轻阴影，不做厚重投影。
+   ========================================================================== */
+
+/* 统一盒模型，避免 padding 把固定宽度元素撑出横向滚动 */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
 .header {
-    z-index: 999;
-    background-color: #fafafa;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.075);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
     left: 0;
-    height: 3em;
+    z-index: 999;
     width: 100%;
-    /*padding: 0;*/
+    height: var(--fc-header-height);
+    padding: 0 1.25rem;
     display: flex;
-    padding: 0.5em 0.5em 0.5em 1em;
     align-items: center;
+    gap: 0.75rem;
+
+    background-color: var(--fc-bg-header);
+    /* 用一条极细的线分隔，比阴影更克制 */
+    border-bottom: 1px solid var(--fc-border);
+    /* 毛玻璃：滚动时内容从下方经过会有轻微通透感 */
+    backdrop-filter: saturate(180%) blur(8px);
 }
 
-
-.header-min {
-    height: 0.1rem;
-    font-size: 0.1rem;
-    opacity: 0.5;
+/* 让中间标题 / 占位区域撑开，把右侧 GitHub 推到最右 */
+.header title {
+    display: block;
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--fc-text-heading);
 }
 
-.header-min:hover {
-    height: 4rem;
-    font-size: small;
+/* --------------------------------------------------------------------------
+   左侧品牌区
+   -------------------------------------------------------------------------- */
+.header .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 0 0 auto;
+    text-decoration: none;
+    color: inherit;
+}
+
+.header .brand-logo {
+    display: block;
+    width: 1.35rem;
+    height: 1.35rem;
+    border-radius: var(--fc-radius-sm);
+}
+
+.header .brand-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--fc-text-heading);
+}
+
+/* 「Docs」小标签，用于区分产品和文档 */
+.header .brand-tag {
+    padding: 0.05rem 0.4rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--fc-primary);
+    background-color: var(--fc-primary-soft);
+    border-radius: 999px;
+}
+
+/* 当前文档名：弱化的次要信息，过长自动省略 */
+.header .header-title {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-left: 0.85rem;
+    margin-left: 0.35rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    color: var(--fc-text-muted);
+    /* 用一条竖线跟品牌区分开 */
+    border-left: 1px solid var(--fc-border);
+}
+
+/* 空内容时不显示那条竖线 */
+.header .header-title:empty {
+    padding-left: 0;
+    margin-left: 0;
+    border-left: 0;
+}
+
+/* header 里的 h3 当作品牌标题用 */
+.header h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--fc-text-heading);
 }
 
 .header > * {
     flex: 0 0 auto;
-}
-
-.header title {
-    display: block;
-    flex: 1 1 auto;
-    /*padding: 0 1em;*/
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: 1.2em;
-}
-
-.header .header-menu {
-    display: none;
-}
-
-.header .overlay {
-    width: 0;
-    height: 0;
 }
 
 .header a,
@@ -59,75 +120,124 @@
     color: inherit;
 }
 
-.header > div:first-child > .action,
-.header img {
-    margin-right: 1em;
+/* --------------------------------------------------------------------------
+   语言切换按钮：显示切换目标语言，与 GitHub 按钮同一视觉语言
+   -------------------------------------------------------------------------- */
+.header .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex: 0 0 auto;
+    padding: 0.32rem 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--fc-text-muted);
+    text-decoration: none;
+    border: 1px solid var(--fc-border);
+    border-radius: var(--fc-radius-sm);
+    transition: background-color var(--fc-transition), color var(--fc-transition),
+        border-color var(--fc-transition);
 }
 
-.header img {
-    height: 2.5em;
+.header .lang-switch:hover {
+    color: var(--fc-text);
+    background-color: var(--fc-bg-hover);
+    border-color: var(--fc-border-strong);
 }
 
-.header .action span {
-    display: none;
+.header .lang-switch svg {
+    width: 0.95rem;
+    height: 0.95rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
-.header > div div {
-    vertical-align: middle;
-    /*position: relative;*/
+/* GitHub 图标：不要撑大，和文字基线对齐 */
+.github-corner {
+    display: inline-flex;
+    align-items: center;
+    margin-left: auto;
+    padding: 0.35rem;
+    border-radius: var(--fc-radius-sm);
+    border: 1px solid var(--fc-border);
+    transition: background-color var(--fc-transition), border-color var(--fc-transition);
 }
 
-.header .search-button,
-.header .menu-button {
-    display: none;
+.github-corner:hover {
+    background-color: var(--fc-bg-hover);
+    border-color: var(--fc-border-strong);
 }
 
+.github-corner img,
+.github-corner image {
+    display: block;
+    width: 1.15rem;
+    height: 1.15rem;
+    /* 图标本身是深色的，暗色主题下反转为浅色 */
+    opacity: 0.8;
+}
+
+@media (prefers-color-scheme: dark) {
+    .github-corner img,
+    .github-corner image {
+        filter: invert(1);
+        opacity: 0.75;
+    }
+
+    .github-corner:hover img,
+    .github-corner:hover image {
+        opacity: 1;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   移动端：只保留汉堡按钮 + 标题 + GitHub
+   -------------------------------------------------------------------------- */
 .header .header-menu {
     display: none;
 }
 
-
-/*移动*/
 @media (max-width: 736px) {
     .header {
-        overflow-x: auto !important; /*  暂时使用这种滚动方式 */
-        overflow-y: hidden;
-
-        /*-ms-overflow-style: none;  !* 对 IE 和 Edge 浏览器隐藏滚动条 *!*/
-        /*scrollbar-width: none;     !* 对 Firefox 浏览器隐藏滚动条 *!*/
+        padding: 0 0.85rem;
+        gap: 0.5rem;
     }
 
-
     .header .header-menu {
-        display: block;
-        padding-right: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        cursor: pointer;
+    }
+
+    /* 小屏顶栏空间有限：隐藏 Docs 标签与当前文档名，只留品牌和入口 */
+    .header .brand-tag,
+    .header .header-title {
+        display: none;
     }
 }
 
-/*菜单按钮*/
+/* 汉堡图标：三条线，圆角，间距均等 */
 .menu-icon {
-    width: 1.25rem;
-    height: 1.25rem;
     position: relative;
-    display: inline-block;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 1.1rem;
+    height: 1.1rem;
     cursor: pointer;
-    margin: .3rem;
 }
 
 .menu-icon span {
     display: block;
     width: 100%;
     height: 2px;
-    background-color: #333;
-    margin: 4px 0;
     border-radius: 2px;
-}
-
-.github-corner {
-    padding-right: 2rem;
-}
-.github-corner image {
-    height: 2rem;
-    width: 2rem;
-
+    background-color: var(--fc-text);
+    transition: background-color var(--fc-transition);
 }

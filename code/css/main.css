@@ -1,16 +1,17 @@
-
-
+/* ==========================================================================
+   主内容区布局
+   #preview 自身已经用 max-width 居中，main 只负责让出侧栏宽度。
+   ========================================================================== */
 
 main {
-    /*直接让内容居右*/
     min-height: 1em;
-    margin: 0 1em 1em auto;
-    width: calc(100% - 19em);
+    margin: 0 0 0 var(--fc-menu-width);
+    width: calc(100% - var(--fc-menu-width));
 }
 
 @media (max-width: 736px) {
     main {
-        margin: 0 1em;
-        width: calc(100% - 2em);
+        margin: 0;
+        width: 100%;
     }
 }

@@ -1,0 +1,471 @@
+/* ==========================================================================
+   官网首页
+   与文档页共用顶栏，但内容区是独立的整幅布局：
+   渐变 hero + 功能网格 + 页脚，不带左侧文档菜单。
+   ========================================================================== */
+
+/* 首页时整页隐藏文档侧栏与文档容器 */
+body.page-home #menu {
+    display: none;
+}
+
+/* 首页没有侧栏，汉堡按钮也无意义，一并隐藏 */
+body.page-home .header .header-menu {
+    display: none;
+}
+
+body.page-home main {
+    margin-left: 0;
+    width: 100%;
+}
+
+body.page-home #preview {
+    display: none;
+}
+
+/* 首页根容器 */
+#home {
+    display: none;
+}
+
+body.page-home #home {
+    display: block;
+}
+
+/* --------------------------------------------------------------------------
+   Hero 区
+   顶部浅蓝渐变铺满，视觉焦点集中在中部内容
+   -------------------------------------------------------------------------- */
+.home-hero {
+    position: relative;
+    padding: 4.5rem 1.5rem 3rem;
+    background: linear-gradient(180deg, #dbeafe 0%, #eaf3fe 38%, #ffffff 100%);
+    overflow: hidden;
+}
+
+/* 顶部一层淡蓝光晕，避免纯渐变太平 */
+.home-hero::before {
+    content: "";
+    position: absolute;
+    top: -14rem;
+    left: 50%;
+    width: 72rem;
+    height: 36rem;
+    transform: translateX(-50%);
+    background: radial-gradient(ellipse at center, rgba(96, 165, 250, 0.28), transparent 68%);
+    pointer-events: none;
+}
+
+.home-hero-inner {
+    position: relative;
+    max-width: 74rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.95fr 1.2fr;
+    align-items: center;
+    gap: 3.5rem;
+}
+
+/* ---------- 左侧文案 ---------- */
+.home-hero-copy {
+    min-width: 0;
+}
+
+/* release 徽标：胶囊形，深底浅字 */
+.home-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 1.1rem;
+    padding: 0.15rem 0.2rem 0.15rem 0.15rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    background-color: #1f2937;
+    border-radius: 999px;
+}
+
+.home-badge-label {
+    padding: 0.1rem 0.45rem;
+    color: #9ca3af;
+    text-transform: lowercase;
+}
+
+.home-badge-value {
+    padding: 0.1rem 0.55rem 0.1rem 0;
+    color: #7dd3fc;
+}
+
+/* 主标题：图标 + 文字同一行 */
+.home-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 0 0 1.15rem;
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--fc-text-heading);
+}
+
+.home-title-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    flex: 0 0 auto;
+    /* 用主题色做一个柔和的底衬 */
+    background-color: var(--fc-primary);
+    border-radius: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-title-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke: #fff;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.home-desc {
+    max-width: 27rem;
+    margin: 0 0 1.9rem;
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: var(--fc-text-muted);
+}
+
+.home-desc strong {
+    color: var(--fc-text);
+    font-weight: 600;
+}
+
+/* ---------- 按钮组 ---------- */
+.home-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.35rem;
+}
+
+.home-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.93rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: var(--fc-radius);
+    border: 1px solid transparent;
+    transition: background-color var(--fc-transition), border-color var(--fc-transition),
+        transform var(--fc-transition);
+}
+
+.home-btn:active {
+    transform: translateY(1px);
+}
+
+.home-btn svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex: 0 0 auto;
+}
+
+/* 主按钮：实心主色 */
+.home-btn-primary {
+    color: #fff;
+    background-color: var(--fc-primary);
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.08);
+}
+
+.home-btn-primary svg {
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.home-btn-primary:hover {
+    background-color: var(--fc-primary-hover);
+}
+
+/* 次按钮：浅底 + 细边框 */
+.home-btn-secondary {
+    color: var(--fc-text);
+    background-color: var(--fc-bg);
+    border-color: var(--fc-border-strong);
+    box-shadow: var(--fc-shadow-sm);
+}
+
+.home-btn-secondary:hover {
+    background-color: var(--fc-bg-hover);
+}
+
+/* GitHub 图标是填充路径，颜色跟随文字 */
+.home-btn-secondary svg {
+    fill: currentColor;
+}
+
+.home-meta {
+    margin: 0;
+    font-size: 0.86rem;
+    color: var(--fc-text-muted);
+}
+
+.home-meta a {
+    color: var(--fc-text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--fc-border-strong);
+}
+
+.home-meta a:hover {
+    color: var(--fc-primary);
+    border-bottom-color: currentColor;
+}
+
+/* 分隔点 */
+/* 分隔点 */
+.home-meta-dot {
+    padding: 0 0.35rem;
+    color: var(--fc-text-faint);
+}
+
+/* ---------- 右侧产品截图 ---------- */
+.home-hero-shot {
+    min-width: 0;
+}
+
+.home-hero-shot-frame {
+    position: relative;
+    border-radius: var(--fc-radius);
+    overflow: hidden;
+    background-color: #f1f3f6;
+    /* 深色细边框 + 多层阴影，让截图从浅色渐变背景上浮起来 */
+    border: 1px solid rgba(17, 24, 39, 0.14);
+    box-shadow:
+        0 1px 1px rgba(16, 24, 40, 0.04),
+        0 12px 28px -8px rgba(16, 24, 40, 0.22),
+        0 32px 64px -20px rgba(16, 24, 40, 0.28);
+}
+
+.home-hero-shot-frame img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* --------------------------------------------------------------------------
+   「为什么选择」区块
+   -------------------------------------------------------------------------- */
+.home-section {
+    padding: 3.5rem 1.5rem 4.5rem;
+}
+
+.home-section-inner {
+    max-width: 62rem;
+    margin: 0 auto;
+}
+
+.home-section-head {
+    max-width: 42rem;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+
+.home-section-title {
+    margin: 0 0 1rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--fc-text-heading);
+}
+
+.home-section-desc {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--fc-text-muted);
+}
+
+.home-section-desc a {
+    color: var(--fc-primary);
+    text-decoration: none;
+}
+
+.home-section-desc a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- 功能网格：3 列，窄屏自动降列 ---------- */
+.home-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.25rem 2.5rem;
+}
+
+.home-feature {
+    min-width: 0;
+}
+
+/* 功能图标：浅主色底 + 主色线条 */
+.home-feature-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.3rem;
+    height: 2.3rem;
+    margin-bottom: 0.9rem;
+    background-color: var(--fc-primary-soft);
+    border-radius: var(--fc-radius);
+}
+
+.home-feature-icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    stroke: var(--fc-primary);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.home-feature-title {
+    margin: 0 0 0.4rem;
+    font-size: 1rem;
+    font-weight: 650;
+    color: var(--fc-text-heading);
+}
+
+.home-feature-desc {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.72;
+    color: var(--fc-text-muted);
+}
+
+.home-feature-desc a {
+    color: var(--fc-primary);
+    text-decoration: none;
+}
+
+.home-feature-desc a:hover {
+    text-decoration: underline;
+}
+
+/* --------------------------------------------------------------------------
+   页脚
+   -------------------------------------------------------------------------- */
+.home-footer {
+    padding: 1.75rem 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--fc-text-muted);
+    background-color: var(--fc-bg-subtle);
+    border-top: 1px solid var(--fc-border);
+}
+
+.home-footer a {
+    color: var(--fc-text);
+    text-decoration: none;
+}
+
+.home-footer a:hover {
+    color: var(--fc-primary);
+}
+
+/* --------------------------------------------------------------------------
+   响应式
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .home-hero-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    /* 窄屏时图片放到文案下方，且不再拉伸太宽 */
+    .home-hero-shot {
+        max-width: 44rem;
+    }
+
+    .home-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 736px) {
+    .home-hero {
+        padding: 3rem 1.15rem 3rem;
+    }
+
+    .home-title {
+        font-size: 2rem;
+    }
+
+    .home-title-icon {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .home-desc {
+        font-size: 0.95rem;
+    }
+
+    /* 移动端按钮铺满一行，点击更好按 */
+    .home-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .home-section {
+        padding: 3rem 1.15rem 3.5rem;
+    }
+
+    .home-grid {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   暗色主题
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+    .home-hero {
+        background: linear-gradient(180deg, #171b22 0%, #191d24 45%, #16181d 100%);
+    }
+
+    .home-hero::before {
+        background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.18), transparent 70%);
+    }
+
+    .home-badge {
+        background-color: #262b33;
+    }
+
+    .home-btn-secondary {
+        background-color: #20242b;
+        border-color: #3a404b;
+    }
+
+    .home-btn-secondary:hover {
+        background-color: #262a33;
+    }
+
+    .home-hero-shot-frame {
+        border-color: rgba(255, 255, 255, 0.08);
+        background-color: #1f242c;
+        box-shadow: 0 18px 48px -12px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    /* 截图本身是浅色界面，暗色主题下略微压暗，避免大块白刺眼 */
+    .home-hero-shot-frame img {
+        filter: brightness(0.88) contrast(1.02);
+    }
+}
