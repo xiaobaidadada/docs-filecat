@@ -61,7 +61,7 @@ export const home_i18n = {
             {
                 icon: 'monitor',
                 title: 'System Insights',
-                desc: 'Visualise CPU, memory, disk and network usage over time, so you can spot what is slowing the server down.',
+                desc: 'Visualise CPU, memory, Docker,Process,Systemd',
             },
             {
                 icon: 'tools',
@@ -129,7 +129,7 @@ export const home_i18n = {
             {
                 icon: 'monitor',
                 title: '系统信息可视化',
-                desc: '用图表查看 CPU、内存、磁盘与网络的使用趋势，一眼看出服务器卡在哪里。',
+                desc: '用图表查看 CPU、内存、Docker、进程、Systemd。',
             },
             {
                 icon: 'tools',
