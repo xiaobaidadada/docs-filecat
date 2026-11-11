@@ -141,25 +141,19 @@ body.page-home #home {
 }
 
 .home-title-icon {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 2.75rem;
+    height: 2.75rem;
     flex: 0 0 auto;
-    /* 用主题色做一个柔和的底衬 */
-    background-color: var(--fc-primary);
-    border-radius: 0.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.home-title-icon svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    stroke: #fff;
-    fill: none;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+.home-title-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .home-desc {
