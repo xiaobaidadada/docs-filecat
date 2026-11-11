@@ -238,29 +238,8 @@ body.page-home #home {
     fill: currentColor;
 }
 
-.home-meta {
-    margin: 0;
-    font-size: 0.86rem;
-    color: var(--fc-text-muted);
-}
-
-.home-meta a {
-    color: var(--fc-text);
-    text-decoration: none;
-    border-bottom: 1px solid var(--fc-border-strong);
-}
-
-.home-meta a:hover {
-    color: var(--fc-primary);
-    border-bottom-color: currentColor;
-}
-
 /* 分隔点 */
 /* 分隔点 */
-.home-meta-dot {
-    padding: 0 0.35rem;
-    color: var(--fc-text-faint);
-}
 
 /* ---------- 右侧产品截图 ---------- */
 .home-hero-shot {

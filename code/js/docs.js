@@ -16,6 +16,9 @@ const feature_icons = {
     tunnel: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18"/><path d="M5 8a4 4 0 0 0 0 8"/><path d="M19 8a4 4 0 0 1 0 8"/></svg>`,
     ai: `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 10h6M9 14h4"/></svg>`,
     shield: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v6c0 4.4 3.2 7.9 7.5 9 4.3-1.1 7.5-4.6 7.5-9V6z"/><path d="m9 12 2 2 4-4"/></svg>`,
+    editor: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l4-1 9.5-9.5a2.1 2.1 0 0 0-3-3L5 16z"/><path d="M14 6.5 17.5 10"/></svg>`,
+    monitor: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20V10"/><path d="M9 20V4"/><path d="M15 20v-7"/><path d="M21 20V8"/></svg>`,
+    tools: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6.5a3.8 3.8 0 0 0 4.9 4.9L21 13l-8 8-2.4-2.4a3.8 3.8 0 0 1-4.9-4.9L3 11l8-8z"/><path d="m8 16 8-8"/></svg>`,
 };
 
 const html_title = document.title;

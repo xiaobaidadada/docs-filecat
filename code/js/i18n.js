@@ -15,8 +15,6 @@ export const home_i18n = {
         btn_docs: 'View Docs',
         btn_github: 'GitHub',
 
-        meta_license: 'Open Source Apache 2.0 Licensed',
-        meta_free: 'Free Forever',
 
         shot_alt: 'FileCat file manager interface',
 
@@ -55,6 +53,21 @@ export const home_i18n = {
                 title: 'Access Control',
                 desc: 'Fine-grained path and operation permissions, so each user only reaches their own directories.',
             },
+            {
+                icon: 'editor',
+                title: 'Multi-format Editor',
+                desc: 'Write code and sketch mind maps in the browser, with a Typora-style what-you-see-is-what-you-get Markdown editor.',
+            },
+            {
+                icon: 'monitor',
+                title: 'System Insights',
+                desc: 'Visualise CPU, memory, disk and network usage over time, so you can spot what is slowing the server down.',
+            },
+            {
+                icon: 'tools',
+                title: 'Plenty More Built In',
+                desc: 'Tail huge logs instantly, run CI/CD pipelines from .act workflow files, sketch on an Excalidraw whiteboard, and more.',
+            },
         ],
 
         footer_built_by: 'Built by',
@@ -69,8 +82,6 @@ export const home_i18n = {
         btn_docs: '查看文档',
         btn_github: 'GitHub',
 
-        meta_license: '开源 Apache 2.0 许可',
-        meta_free: '永久免费',
 
         shot_alt: 'FileCat 文件管理界面',
 
@@ -108,6 +119,22 @@ export const home_i18n = {
                 icon: 'shield',
                 title: '权限管理',
                 desc: '细粒度的路径与操作权限，不同用户可以访问不同的目录。',
+            },
+
+            {
+                icon: 'editor',
+                title: '多格式编辑器',
+                desc: '在浏览器里写代码、做思维导图，还有类 Typora 的 Markdown 所见即所得编辑体验。',
+            },
+            {
+                icon: 'monitor',
+                title: '系统信息可视化',
+                desc: '用图表查看 CPU、内存、磁盘与网络的使用趋势，一眼看出服务器卡在哪里。',
+            },
+            {
+                icon: 'tools',
+                title: '超多实用工具',
+                desc: '超大日志秒开查看、用 .act 工作流跑 CI/CD 自动化、Excalidraw 白板绘图，还有更多。',
             },
         ],
 
