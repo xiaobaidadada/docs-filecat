@@ -27,40 +27,16 @@ export class Http_util {
         md_render.use(linkClickPlugin);
     }
 
+    /* 直接请求 md 文件并渲染，不再预构建 html 缓存 */
     static async get(url) {
-        try {
-            // throw "1";
-            let dir;
-            let dot_index;
-            let name;
-
-            for (let i=url.length-1; i>=0;i--) {
-                if(url[i] === "/") {
-                    dir = url.substring(0,i);
-                    name = url.substring(i+1,dot_index);
-                    // debugger
-                    break
-                } else if(url[i] === ".") {
-                    dot_index = i;
-                }
-            }
-            const new_url = `${dir}/dist/${name}.html`;
-            const res = await fetch(new_url);
-            // 检查返回的响应是否正常
-            if (!res.ok) {
-                throw new Error(`Failed to fetch ${new_url}: ${res.status}`);
-            }
-            return  res.text();
-        } catch (e) {
-            const res = await fetch(url);
-            let data = await res.text();
-            if (!res.ok) {
-                return data;
-            }
-            if(!md_render) {
-                await this.load_md();
-            }
-            return  md_render.render(data);
+        const res = await fetch(url);
+        const data = await res.text();
+        if (!res.ok) {
+            return data;
         }
+        if (!md_render) {
+            await this.load_md();
+        }
+        return md_render.render(data);
     }
 }

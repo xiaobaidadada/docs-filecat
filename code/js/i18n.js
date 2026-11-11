@@ -32,9 +32,9 @@ export const home_i18n = {
                 desc: 'Browse, upload, download, unzip and edit files, with real-time viewing for very large log files.',
             },
             {
-                icon: 'code',
-                title: 'Code Editing',
-                desc: 'Edit files on the server directly in the built-in editor, with syntax highlighting out of the box.',
+                icon: 'cloud',
+                title: 'Mounts',
+                desc: 'Mount WebDAV, SFTP, SMB, S3 and Baidu Netdisk, then browse remote storage like a local folder.',
             },
             {
                 icon: 'terminal',
@@ -87,9 +87,9 @@ export const home_i18n = {
                 desc: '浏览、上传、下载、解压缩、在线编辑，支持超大日志文件实时查看。',
             },
             {
-                icon: 'code',
-                title: '代码编辑',
-                desc: '内置编辑器直接修改服务器上的文件，语法高亮开箱即用。',
+                icon: 'cloud',
+                title: '网盘挂载',
+                desc: '挂载 WebDAV、SFTP、SMB、S3 与百度网盘，像本地目录一样访问远端存储。',
             },
             {
                 icon: 'terminal',

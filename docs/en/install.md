@@ -1,12 +1,14 @@
 
 
-## ❗ macOS Support Notice
+## 💻 Platform Support
 
-Currently, **macOS is not officially supported**.  
-Some core features are written in C and are **not cross-platform compatible**.  
-Since I don't have access to a Mac device, it's **very likely** that the software won't compile or run properly on macOS.
+| Platform | Status |
+| --- | --- |
+| **Linux** | Fully supported, with a one-line install script and systemd/pm2 keep-alive |
+| **Windows** | Fully supported, the binary package includes `filecat-run.cmd` |
+| **macOS** | Supported, the binary package includes `filecat-run.sh` |
 
-> **However, you can still run Filecat on macOS using Docker.**
+> A few submodules (such as `node-process-watcher`) are written in C++/C and download prebuilt artifacts from GitHub at install time. If GitHub is unreachable, they are compiled locally, so a build toolchain is required.
 
 ---
 

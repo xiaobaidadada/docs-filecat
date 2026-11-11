@@ -43,12 +43,16 @@
     border-radius: var(--fc-radius-sm);
 }
 
-/* 每一项的可点击文字区域 */
+/* 每一项的可点击文字区域：撑满整行，整行都能点 */
 #menu li > p {
+    position: relative;
     margin: 0;
     padding: 0.4rem 0.6rem;
     border-radius: var(--fc-radius-sm);
     color: var(--fc-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     transition: background-color var(--fc-transition), color var(--fc-transition);
 }
 
@@ -56,7 +60,21 @@
     background-color: var(--fc-bg-hover);
 }
 
-/* 普通链接：同样按行内块铺满，方便点击 */
+/* markdown 把链接渲染在 p 内部，用伪元素把点击区域扩展到整个 p，
+   这样既保持 emoji 和文字在同一行，又能整行点击 */
+#menu li > p a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--fc-radius-sm);
+}
+
+/* strong 里的链接同样处理，保持 inline 排布 */
+#menu li > p strong {
+    font-weight: 600;
+}
+
+/* 普通链接：撑满 li 宽度，整行可点，hover 不加下划线 */
 #menu li > a {
     display: block;
     padding: 0.4rem 0.6rem;
@@ -64,6 +82,14 @@
     color: var(--fc-text);
     text-decoration: none;
     transition: background-color var(--fc-transition), color var(--fc-transition);
+}
+
+/* 覆盖 markdown-body 的 a:hover 下划线 */
+#menu a,
+#menu a:hover,
+#menu a:focus,
+#menu a:active {
+    text-decoration: none;
 }
 
 #menu li > a:hover {
