@@ -126,6 +126,9 @@ async function renderHome() {
         shot.alt = text.shot_alt;
     }
 
+    // 版本号从 npm registry 实时获取，失败时保留 html 中的 latest 占位
+    load_npm_version();
+
     // 「查看文档」按钮跳到当前语言的安装文档
     const docs_btn = document.querySelector('.home-btn-primary');
     if (docs_btn) docs_btn.href = `#/${lang}/install.md`;
@@ -146,6 +149,23 @@ async function renderHome() {
     if (year_el) year_el.textContent = String(new Date().getFullYear());
 
     update_lang_switch(lang);
+}
+
+/**
+ * 从 npm registry 获取 filecat 的最新版本号并写入徽标。
+ * 失败时保留 html 里的 latest 占位，不影响页面其它部分。
+ */
+async function load_npm_version() {
+    const el = document.getElementById('badge-version');
+    if (!el) return;
+    try {
+        const res = await fetch('https://registry.npmjs.org/filecat/latest', {cache: 'no-store'});
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && data.version) el.textContent = `v${data.version}`;
+    } catch (e) {
+        // 网络不可达时静默失败，保持默认文案
+    }
 }
 
 /**

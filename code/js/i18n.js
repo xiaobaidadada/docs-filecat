@@ -8,7 +8,6 @@ export const home_i18n = {
     // 英文（默认）
     en: {
         badge_label: 'release',
-        badge_version: 'v2.x',
 
         // hero 主标题的品牌名固定，不翻译
         desc: 'A self-hosted file server you can set up in minutes. Manage files, edit code, talk to an AI assistant, and open a remote terminal — all from one place.',
@@ -64,7 +63,6 @@ export const home_i18n = {
     // 简体中文
     'zh-CN': {
         badge_label: 'release',
-        badge_version: 'v2.x',
 
         desc: '一个帮助你快速搭建文件服务器的开源工具，内置文件管理、在线编辑、AI 助手、远程终端与内网穿透，让服务器操作像本地一样顺手。',
 

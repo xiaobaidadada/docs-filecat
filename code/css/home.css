@@ -71,13 +71,13 @@ body.page-home #home {
     min-width: 0;
 }
 
-/* release 徽标：胶囊形，深底浅字 */
+/* release 徽标：胶囊形，深底浅字，内含 npm 与 github 两个链接 */
 .home-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.15rem;
     margin-bottom: 1.1rem;
-    padding: 0.15rem 0.2rem 0.15rem 0.15rem;
+    padding: 0.15rem;
     font-size: 0.76rem;
     font-weight: 600;
     letter-spacing: 0.02em;
@@ -85,14 +85,45 @@ body.page-home #home {
     border-radius: 999px;
 }
 
+.home-badge-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.1rem 0.55rem;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background-color var(--fc-transition);
+}
+
+.home-badge-link:hover {
+    background-color: #374151;
+    text-decoration: none;
+}
+
+/* 右侧 github 段：与版本号之间加一条分隔线 */
+.home-badge-link-release {
+    position: relative;
+    padding-left: 0.75rem;
+}
+
+.home-badge-link-release::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 0.85em;
+    background-color: #4b5563;
+}
+
 .home-badge-label {
-    padding: 0.1rem 0.45rem;
+    padding: 0.1rem 0;
     color: #9ca3af;
     text-transform: lowercase;
 }
 
 .home-badge-value {
-    padding: 0.1rem 0.55rem 0.1rem 0;
     color: #7dd3fc;
 }
 
