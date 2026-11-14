@@ -26,7 +26,8 @@
             href="code/resource/favicon-32x32.png"
     />
 </head>
-<body>
+<!-- 默认首页：先带 page-home 避免刷新时首屏空白，进入文档页后由 update_page_mode 移除 -->
+<body class="page-home">
 <header class="header">
     <!-- 移动端汉堡按钮，桌面端由 css 隐藏 -->
     <div id="menu-change-button" class="header-menu">
